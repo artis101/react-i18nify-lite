@@ -1,7 +1,7 @@
 {
   "name": "react-i18n-components",
   "version": "1.0.0",
-  "description": "A simple i18n translation & localization library for React applications.",
+  "description": "Simple i18n translation and localization components for React applications.",
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

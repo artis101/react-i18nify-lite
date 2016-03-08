@@ -1,5 +1,5 @@
 # react-i18n-components
-A simple i18n translation and localization library for React applications.
+Simple i18n translation and localization components for React applications.
 
 [![npm version](https://badge.fury.io/js/react-i18n-components.svg)](https://badge.fury.io/js/react-i18n-components)
 
