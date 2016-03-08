@@ -15,7 +15,6 @@ var _intl2 = _interopRequireDefault(_intl);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  _store: null,
   _locale: 'en',
   _translations: {},
 
@@ -28,10 +27,7 @@ exports.default = {
   t: function t(key) {
     var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
-    if (this._store) {
-      return this._translate(key, replacements);
-    }
-    return key;
+    return this._translate(key, replacements);
   },
   _translate: function _translate(key) {
     var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -49,10 +45,7 @@ exports.default = {
     return translation;
   },
   l: function l(value, options) {
-    if (this._store) {
-      return this._localize(value, options);
-    }
-    return value;
+    return this._localize(value, options);
   },
   _localize: function _localize(value, options) {
     if ('dateFormat' in options) {
