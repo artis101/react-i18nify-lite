@@ -2,7 +2,6 @@ import moment from 'moment/min/moment-with-locales.min.js';
 import IntlPolyfill from 'intl';
 
 export default {
-  _store: null,
   _locale: 'en',
   _translations: {},
 
@@ -15,10 +14,7 @@ export default {
   },
 
   t(key, replacements = {}) {
-    if (this._store) {
-      return this._translate(key, replacements);
-    }
-    return key;
+    return this._translate(key, replacements);
   },
 
   _translate(key, replacements = {}) {
@@ -36,10 +32,7 @@ export default {
   },
 
   l(value, options) {
-    if (this._store) {
-      return this._localize(value, options);
-    }
-    return value;
+    return this._localize(value, options);
   },
 
   _localize(value, options) {
