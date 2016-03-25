@@ -47,7 +47,7 @@ Now you're all set up to start unleashing the power of `react-i18nify`!
 
 ## Components
 
-The easiest way to translate or localize in your React component is by using the `Translate` and `Localize` components:
+The easiest way to translate or localize in your React components is by using the `Translate` and `Localize` components:
 ```javascript
 var React = require('react');
 var Translate = require('react-i18nify').Translate;

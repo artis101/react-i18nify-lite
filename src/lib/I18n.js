@@ -42,7 +42,8 @@ export default {
     }
     if (typeof value === 'number') {
       if (global.Intl) {
-        if (!(Intl.NumberFormat && Intl.NumberFormat.supportedLocalesOf(this._locale).length === 1)) {
+        if (!(Intl.NumberFormat &&
+          Intl.NumberFormat.supportedLocalesOf(this._locale).length === 1)) {
           Intl.NumberFormat = IntlPolyfill.NumberFormat;
         }
       } else {
