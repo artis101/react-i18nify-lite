@@ -1,18 +1,18 @@
-# react-i18n-components
-Simple i18n translation and localization components for React applications.
+# react-i18nify
+Simple i18n translation and localization components and helpers for React.
 
-[![npm version](https://badge.fury.io/js/react-i18n-components.svg)](https://badge.fury.io/js/react-i18n-components)
+[![npm version](https://badge.fury.io/js/react-i18nify.svg)](https://badge.fury.io/js/react-i18nify)
 
 ## Preparation
 
 To start using this library, first install the package:
 ```
-npm i react-i18n-components --save
+npm i react-i18nify --save
 ```
 
 Next, load translations and set the locale to be used:
 ```javascript
-var I18n = require('react-i18n-components').I18n;
+var I18n = require('react-i18nify').I18n;
 
 I18n.setTranslations({
   en: {
@@ -38,7 +38,7 @@ I18n.setTranslations({
 I18n.setLocale('nl');
 ```
 
-Now you're all set up to start unleashing the power of `react-i18n-components`!
+Now you're all set up to start unleashing the power of `react-i18nify`!
 
 ## Usage
 
@@ -47,7 +47,7 @@ Now you're all set up to start unleashing the power of `react-i18n-components`!
 The prefered way to have translated texts in your app is by using the `Translate` component:
 ```javascript
 var React = require('react');
-var Translate = require('react-i18n-components').Translate;
+var Translate = require('react-i18nify').Translate;
 
 var SomeComponent = React.createClass({
   render: function() {
@@ -65,7 +65,7 @@ var SomeComponent = React.createClass({
 
 If for some reason, you cannot use the component, you can use the `I18n.t` helper instead:
 ```javascript
-var I18n = require('react-i18n-components').I18n;
+var I18n = require('react-i18nify').I18n;
 
 I18n.t('application.title'); // => returns 'Toffe app met i18n!' for locale 'nl'
 I18n.t('application.name', {name: 'Aad'}); // => returns 'Hallo, Aad!' for locale 'nl'
@@ -78,7 +78,7 @@ This library supports the localization of both dates and numbers.
 The prefered way of doing that is by using the `Localize` component:
 ```javascript
 var React = require('react');
-var Localize = require('react-i18n-components').Localize;
+var Localize = require('react-i18nify').Localize;
 
 var SomeComponent = React.createClass({
   render: function() {
@@ -96,7 +96,7 @@ var SomeComponent = React.createClass({
 
 Also here, If for some reason, you cannot use the component, there is the `I18n.l` helper to help you out:
 ```javascript
-var I18n = require('react-i18n-components').I18n;
+var I18n = require('react-i18nify').I18n;
 
 I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'
 I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale 'nl'

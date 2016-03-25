@@ -1,7 +1,7 @@
 {
-  "name": "react-i18n-components",
-  "version": "1.0.0",
-  "description": "Simple i18n translation and localization components for React applications.",
+  "name": "react-i18nify",
+  "version": "1.0.1",
+  "description": "Simple i18n translation and localization components and helpers for React.",
   "main": "./build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,7 @@
   "author": "Zoover",
   "repository": {
     "type": "git",
-    "url": "git://github.com/zoover/react-i18n-components.git"
+    "url": "git://github.com/zoover/react-i18nify.git"
   },
   "license": "ISC",
   "keywords": [
@@ -18,7 +18,9 @@
     "i18n",
     "translation",
     "localization",
-    "flux"
+    "flux",
+    "fluxible",
+    "redux"
   ],
   "dependencies": {
     "intl": "^1.1",
