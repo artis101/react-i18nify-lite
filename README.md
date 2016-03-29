@@ -14,7 +14,7 @@ Next, load the translations to be used, for example in `app.js`:
 ```javascript
 var I18n = require('react-i18nify').I18n;
 
-I18n.setTranslations({
+I18n.loadTranslations({
   en: {
     application: {
       title: 'Awesome app with i18n!',

@@ -1,4 +1,5 @@
-import moment from 'moment/min/moment-with-locales.min.js';
+import moment from 'moment';
+import locales from 'moment/min/locales';
 import IntlPolyfill from 'intl';
 
 export default {
@@ -10,11 +11,19 @@ export default {
   },
 
   setTranslations(translations) {
+    this.loadTranslations(translations);
+  },
+
+  loadTranslations(translations) {
     this._translations = translations;
   },
 
   t(key, replacements = {}) {
     return this._translate(key, replacements);
+  },
+
+  l(value, options) {
+    return this._localize(value, options);
   },
 
   _translate(key, replacements = {}) {
@@ -31,13 +40,8 @@ export default {
     return translation;
   },
 
-  l(value, options) {
-    return this._localize(value, options);
-  },
-
   _localize(value, options) {
     if ('dateFormat' in options) {
-      moment.locale(this._locale);
       return moment(value).format(this.t(options.dateFormat));
     }
     if (typeof value === 'number') {

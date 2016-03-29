@@ -4,9 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _momentWithLocalesMin = require('moment/min/moment-with-locales.min.js');
+var _moment = require('moment');
 
-var _momentWithLocalesMin2 = _interopRequireDefault(_momentWithLocalesMin);
+var _moment2 = _interopRequireDefault(_moment);
+
+var _locales = require('moment/min/locales');
+
+var _locales2 = _interopRequireDefault(_locales);
 
 var _intl = require('intl');
 
@@ -22,12 +26,18 @@ exports.default = {
     this._locale = locale;
   },
   setTranslations: function setTranslations(translations) {
+    this.loadTranslations(translations);
+  },
+  loadTranslations: function loadTranslations(translations) {
     this._translations = translations;
   },
   t: function t(key) {
     var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     return this._translate(key, replacements);
+  },
+  l: function l(value, options) {
+    return this._localize(value, options);
   },
   _translate: function _translate(key) {
     var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -44,13 +54,9 @@ exports.default = {
     });
     return translation;
   },
-  l: function l(value, options) {
-    return this._localize(value, options);
-  },
   _localize: function _localize(value, options) {
     if ('dateFormat' in options) {
-      _momentWithLocalesMin2.default.locale(this._locale);
-      return (0, _momentWithLocalesMin2.default)(value).format(this.t(options.dateFormat));
+      return (0, _moment2.default)(value).format(this.t(options.dateFormat));
     }
     if (typeof value === 'number') {
       if (global.Intl) {
