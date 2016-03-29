@@ -3,22 +3,30 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Localize = exports.Translate = exports.I18n = undefined;
 
 var _I18n = require('./lib/I18n');
 
-var _I18n2 = _interopRequireDefault(_I18n);
+Object.defineProperty(exports, 'I18n', {
+  enumerable: true,
+  get: function get() {
+    return _I18n.I18n;
+  }
+});
 
 var _Translate = require('./lib/Translate');
 
-var _Translate2 = _interopRequireDefault(_Translate);
+Object.defineProperty(exports, 'Translate', {
+  enumerable: true,
+  get: function get() {
+    return _Translate.Translate;
+  }
+});
 
 var _Localize = require('./lib/Localize');
 
-var _Localize2 = _interopRequireDefault(_Localize);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.I18n = _I18n2.default;
-exports.Translate = _Translate2.default;
-exports.Localize = _Localize2.default;
+Object.defineProperty(exports, 'Localize', {
+  enumerable: true,
+  get: function get() {
+    return _Localize.Localize;
+  }
+});
