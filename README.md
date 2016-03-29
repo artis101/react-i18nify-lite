@@ -1,5 +1,5 @@
 # react-i18nify
-Simple i18n translation and localization components and helpers for React.
+Simple i18n translation and localization components and helpers for React applications.
 
 [![npm version](https://badge.fury.io/js/react-i18nify.svg)](https://badge.fury.io/js/react-i18nify)
 

@@ -56,6 +56,7 @@ exports.default = {
   },
   _localize: function _localize(value, options) {
     if ('dateFormat' in options) {
+      _moment2.default.locale(this._locale);
       return (0, _moment2.default)(value).format(this.t(options.dateFormat));
     }
     if (typeof value === 'number') {
