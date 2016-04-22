@@ -3,8 +3,26 @@ import locales from 'moment/min/locales';
 import IntlPolyfill from 'intl';
 
 export default {
-  _locale: 'en',
-  _translations: {},
+  _localeKey: 'en',
+  _translationsObject: {},
+  _getTranslations: null,
+  _getLocale: null,
+
+  get _translations() {
+    return this._getTranslations ? this._getTranslations() : this._translationsObject;
+  },
+
+  set _translations(translations) {
+    this._translationsObject = translations;
+  },
+
+  get _locale() {
+    return this._getLocale ? this._getLocale() : this._localeKey;
+  },
+
+  set _locale(locale) {
+    this._localeKey = locale;
+  },
 
   setLocale(locale) {
     this._locale = locale;
@@ -16,6 +34,20 @@ export default {
 
   loadTranslations(translations) {
     this._translations = translations;
+  },
+
+  setTranslationsGetter(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('Translations getter must be a function');
+    }
+    this._getTranslations = fn;
+  },
+
+  setLocaleGetter(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('Locale getter must be a function');
+    }
+    this._getLocale = fn;
   },
 
   t(key, replacements = {}) {
