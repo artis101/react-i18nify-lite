@@ -19,8 +19,26 @@ var _intl2 = _interopRequireDefault(_intl);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  _locale: 'en',
-  _translations: {},
+  _localeKey: 'en',
+  _translationsObject: {},
+  _getTranslations: null,
+  _getLocale: null,
+
+  get _translations() {
+    return this._getTranslations ? this._getTranslations() : this._translationsObject;
+  },
+
+  set _translations(translations) {
+    this._translationsObject = translations;
+  },
+
+  get _locale() {
+    return this._getLocale ? this._getLocale() : this._localeKey;
+  },
+
+  set _locale(locale) {
+    this._localeKey = locale;
+  },
 
   setLocale: function setLocale(locale) {
     this._locale = locale;
@@ -30,6 +48,18 @@ exports.default = {
   },
   loadTranslations: function loadTranslations(translations) {
     this._translations = translations;
+  },
+  setTranslationsGetter: function setTranslationsGetter(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('Translations getter must be a function');
+    }
+    this._getTranslations = fn;
+  },
+  setLocaleGetter: function setLocaleGetter(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('Locale getter must be a function');
+    }
+    this._getLocale = fn;
   },
   t: function t(key) {
     var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];

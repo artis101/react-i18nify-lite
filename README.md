@@ -43,6 +43,37 @@ var I18n = require('react-i18nify').I18n;
 I18n.setLocale('nl');
 ```
 
+## Alternative callbacks usage
+
+You can provide a callback that return a translations object, a locale key to
+`setTranslationsGetter` and `setLocaleGetter` respectively.
+```
+function translation() {
+  return {
+      en: {
+        application: {
+          title: 'Awesome app with i18n!',
+          hello: 'Hello, %{name}!'
+        },
+        date: {
+          long: 'MMMM Do, YYYY'
+        }
+      },
+      nl: {
+        application: {
+          title: 'Toffe app met i18n!',
+          hello: 'Hallo, %{name}!'
+        },
+        date: {
+          long: 'D MMMM YYYY'
+        }
+      }
+  };
+}
+
+I18n.setTranslationsGetter(translations):
+I18n.setLocaleGetter(function() { return 'nl'; });
+```
 Now you're all set up to start unleashing the power of `react-i18nify`!
 
 ## Components
