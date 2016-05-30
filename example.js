@@ -33,11 +33,15 @@ console.log(I18n.t('application.hello', {name: 'Aad'}));
 console.log(I18n.l(1385856000000, { dateFormat: 'date.long' }));
 console.log(I18n.l(Math.PI, { maximumFractionDigits: 2 }));
 
-ReactDOM.renderToString(
-  <div>
-    <Translate value="application.title"/><br/>
-    <Translate value="application.hello" name="Aad"/><br/>
-    <Localize value="2015-09-03" dateFormat="date.long"/><br/>
-    <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}}/><br/>
-  </div>
-);
+function AwesomeComponent() {
+  return (
+    <div>
+      <Translate value="application.title"/><br/>
+      <Translate value="application.hello" name="Aad"/><br/>
+      <Localize value="2015-09-03" dateFormat="date.long"/><br/>
+      <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}}/><br/>
+    </div>
+  );
+}
+
+ReactDOM.renderToString(<AwesomeComponent/>);
