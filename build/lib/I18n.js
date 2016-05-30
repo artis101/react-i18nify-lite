@@ -85,7 +85,9 @@ exports.default = {
     });
     return translation;
   },
-  _localize: function _localize(value, options) {
+  _localize: function _localize(value) {
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
     if (options.dateFormat) {
       _moment2.default.locale(this._locale);
       return (0, _moment2.default)(value).format(this.t(options.dateFormat));
