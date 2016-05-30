@@ -41,7 +41,11 @@ var Translate = function (_React$Component) {
       delete result.value;
       return result;
     }, _this.render = function () {
-      return _react2.default.createElement('span', {}, _I18n2.default._translate(_this.props.value, _this.otherProps()));
+      return _react2.default.createElement(
+        'span',
+        null,
+        _I18n2.default._translate(_this.props.value, _this.otherProps())
+      );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 

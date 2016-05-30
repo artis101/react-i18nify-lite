@@ -12,12 +12,9 @@ export default class Translate extends React.Component {
     return result;
   }
 
-  render = () => React.createElement(
-    'span',
-    {},
-    I18n._translate(
-      this.props.value,
-      this.otherProps()
-    )
+  render = () => (
+    <span>
+      {I18n._translate(this.props.value, this.otherProps())}
+    </span>
   );
 }

@@ -10,7 +10,7 @@ First install the package:
 npm i react-i18nify --save
 ```
 
-Next, load the translations to be used, for example in `app.js`:
+Next, load the translations and locale to be used:
 ```javascript
 var I18n = require('react-i18nify').I18n;
 
@@ -34,20 +34,17 @@ I18n.loadTranslations({
     }
   }
 });
-```
-
-Finally, you should set the locale to be used:
-```javascript
-var I18n = require('react-i18nify').I18n;
 
 I18n.setLocale('nl');
 ```
 
 ## Alternative callbacks usage
 
-You can provide a callback that return a translations object, a locale key to
+Alternatively, you can provide a callback to return the translations and locale to
 `setTranslationsGetter` and `setLocaleGetter` respectively.
-```
+```javascript
+var I18n = require('react-i18nify').I18n;
+
 function translation() {
   return {
       en: {
@@ -71,8 +68,12 @@ function translation() {
   };
 }
 
+function locale() {
+  return 'nl';
+}
+
 I18n.setTranslationsGetter(translations):
-I18n.setLocaleGetter(function() { return 'nl'; });
+I18n.setLocaleGetter(locale);
 ```
 Now you're all set up to start unleashing the power of `react-i18nify`!
 
@@ -109,7 +110,7 @@ If for some reason, you cannot use the components, you can use the `I18n.t` and 
 var I18n = require('react-i18nify').I18n;
 
 I18n.t('application.title'); // => returns 'Toffe app met i18n!' for locale 'nl'
-I18n.t('application.name', {name: 'Aad'}); // => returns 'Hallo, Aad!' for locale 'nl'
+I18n.t('application.hello', {name: 'Aad'}); // => returns 'Hallo, Aad!' for locale 'nl'
 
 I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'
 I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale 'nl'

@@ -8,9 +8,7 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _locales = require('moment/min/locales');
-
-var _locales2 = _interopRequireDefault(_locales);
+require('moment/min/locales');
 
 var _intl = require('intl');
 

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import locales from 'moment/min/locales';
+import 'moment/min/locales';
 import IntlPolyfill from 'intl';
 
 export default {
