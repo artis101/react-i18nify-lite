@@ -1,6 +1,7 @@
 import moment from 'moment';
 import 'moment/min/locales';
 import IntlPolyfill from 'intl';
+import formatMissingTranslation from './formatMissingTranslation';
 
 export default {
   _localeKey: 'en',
@@ -63,8 +64,7 @@ export default {
     try {
       translation = this._fetchTranslation(this._translations, `${this._locale}.${key}`);
     } catch (err) {
-      console.error(`I18n: Translation ${this._locale}.${key} not found`);
-      return key;
+      return formatMissingTranslation(key);
     }
     Object.keys(replacements).forEach(replacement => {
       translation = translation.split(`%{${replacement}}`).join(replacements[replacement]);
@@ -88,7 +88,6 @@ export default {
       }
       return new Intl.NumberFormat(this._locale, options).format(value);
     }
-    console.error(`I18n: Localization of ${value} failed`);
     return value;
   },
 

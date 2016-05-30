@@ -116,6 +116,8 @@ I18n.t('application.hello', {name: 'Aad'}); // => returns 'Hallo, Aad!' for loca
 
 I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'
 I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale 'nl'
+
+I18n.l('application.weird_key'); // => returns 'Weird key' as translation is missing
 ```
 
 ## Supported localize options

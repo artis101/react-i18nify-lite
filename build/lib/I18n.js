@@ -14,6 +14,10 @@ var _intl = require('intl');
 
 var _intl2 = _interopRequireDefault(_intl);
 
+var _formatMissingTranslation = require('./formatMissingTranslation');
+
+var _formatMissingTranslation2 = _interopRequireDefault(_formatMissingTranslation);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -74,8 +78,7 @@ exports.default = {
     try {
       translation = this._fetchTranslation(this._translations, this._locale + '.' + key);
     } catch (err) {
-      console.error('I18n: Translation ' + this._locale + '.' + key + ' not found');
-      return key;
+      return (0, _formatMissingTranslation2.default)(key);
     }
     Object.keys(replacements).forEach(function (replacement) {
       translation = translation.split('%{' + replacement + '}').join(replacements[replacement]);
@@ -97,7 +100,6 @@ exports.default = {
       }
       return new Intl.NumberFormat(this._locale, options).format(value);
     }
-    console.error('I18n: Localization of ' + value + ' failed');
     return value;
   },
   _fetchTranslation: function _fetchTranslation(translations, key) {
