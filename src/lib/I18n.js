@@ -73,7 +73,7 @@ export default {
   },
 
   _localize(value, options) {
-    if ('dateFormat' in options) {
+    if (options.dateFormat) {
       moment.locale(this._locale);
       return moment(value).format(this.t(options.dateFormat));
     }
