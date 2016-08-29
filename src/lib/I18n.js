@@ -62,7 +62,7 @@ export default {
   _translate(key, replacements = {}) {
     let translation = '';
     try {
-      translation = this._fetchTranslation(this._translations, `${this._locale}.${key}`);
+      translation = this._fetchTranslation(this._translations, `${this._locale}.${key}`, replacements.count);
     } catch (err) {
       return formatMissingTranslation(key);
     }
@@ -91,7 +91,7 @@ export default {
     return value;
   },
 
-  _fetchTranslation(translations, key) {
+  _fetchTranslation(translations, key, count=null) {
     const _index = key.indexOf('.');
     if (typeof translations === 'undefined') {
       throw new Error('not found');
@@ -100,7 +100,24 @@ export default {
       return this._fetchTranslation(translations[key.substring(0, _index)], key.substr(_index + 1));
     }
     if (translations[key]) {
-      return translations[key];
+
+      // Test for plurals
+      if(count !== null) {
+
+        if(translations[key+'_'+count]) {
+          // when key = 'items_3' if count is 3
+          return translations[key+'_'+count];
+        } else if(count !== 1) {
+          // when count is not simply singular, return _plural
+          return translations[key+'_plural'];
+        } else {
+          // for defaults
+          return translations[key];
+        }
+
+      } else {
+        return translations[key];
+      }
     }
     throw new Error('not found');
   },
