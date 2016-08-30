@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 
-var I18n = require('./build').I18n;
-var Translate = require('./build').Translate;
-var Localize = require('./build').Localize;
+var I18n = require('react-i18nify').I18n;
+var Translate = require('react-i18nify').Translate;
+var Localize = require('react-i18nify').Localize;
 
 I18n.loadTranslations({
   en: {
