@@ -114,7 +114,7 @@ exports.default = {
       throw new Error('not found');
     }
     if (_index > -1) {
-      return this._fetchTranslation(translations[key.substring(0, _index)], key.substr(_index + 1));
+      return this._fetchTranslation(translations[key.substring(0, _index)], key.substr(_index + 1), count);
     }
     if (count !== null) {
       if (translations[key + '_' + count]) {

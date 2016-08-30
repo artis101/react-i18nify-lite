@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 
-var I18n = require('react-i18nify').I18n;
-var Translate = require('react-i18nify').Translate;
-var Localize = require('react-i18nify').Localize;
+var I18n = require('./build').I18n;
+var Translate = require('./build').Translate;
+var Localize = require('./build').Localize;
 
 I18n.loadTranslations({
   en: {
@@ -44,11 +44,16 @@ console.log(I18n.l(Math.PI, { maximumFractionDigits: 2 }));
 function AwesomeComponent() {
   return (
     <div>
-      <Translate value="application.title"/>
-      <Translate value="application.hello" name="Aad"/>
-      <Localize value="2015-09-03" dateFormat="date.long"/>
-      <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}}/>
+      <Translate value="application.title" />
+      <br />
+      <Translate value="application.hello" name="Aad" />
+      <br />
+      <Localize value="2015-09-03" dateFormat="date.long" />
+      <br />
+      <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}} />
+      <br />
       <Translate value="export" count={1} />
+      <br />
       <Translate value="export" count={2} />
     </div>
   );
