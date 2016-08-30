@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: "off" */
+
 import React from 'react';
 import I18n from './I18n';
 

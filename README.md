@@ -26,7 +26,10 @@ I18n.loadTranslations({
     },
     date: {
       long: 'MMMM Do, YYYY'
-    }
+    },
+    export_0: 'Nothing to export',
+    export_1: 'Export %{count} item',
+    export_plural: 'Export %{count} items'
   },
   nl: {
     application: {
@@ -35,7 +38,10 @@ I18n.loadTranslations({
     },
     date: {
       long: 'D MMMM YYYY'
-    }
+    },
+    export_0: 'Niks te exporteren',
+    export_1: 'Exporteer %{count} ding',
+    export_plural: 'Exporteer %{count} dingen'
   }
 });
 
@@ -56,7 +62,10 @@ function translation() {
         },
         date: {
           long: 'MMMM Do, YYYY'
-        }
+        },
+        export: 'Export %{count} items'
+        export_0: 'Nothing to export',
+        export_1: 'Export %{count} item',
       },
       nl: {
         application: {
@@ -65,7 +74,10 @@ function translation() {
         },
         date: {
           long: 'D MMMM YYYY'
-        }
+        },
+        export: 'Exporteer %{count} dingen'
+        export_0: 'Niks te exporteren',
+        export_1: 'Exporteer %{count} ding',
       }
   };
 }
@@ -74,7 +86,7 @@ function locale() {
   return 'nl';
 }
 
-I18n.setTranslationsGetter(translations):
+I18n.setTranslationsGetter(translation_plurals):
 I18n.setLocaleGetter(locale);
 ```
 Now you're all set up to start unleashing the power of `react-i18nify`!
@@ -99,6 +111,10 @@ var AwesomeComponent = React.createClass({
           // => returns '<span>3 september 2015</span> for locale 'nl'
         <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}}/>
           // => returns '<span>€ 3,33</span> for locale 'nl'
+        <Translate value="export" count={1} />
+          // => returns '<span>Exporteer 1 ding</span> for locale 'nl'
+        <Translate value="export" count={2} />
+          // => returns '<span>Exporteer 2 dingen</span> for locale 'nl'
       </div>
     );
   }
@@ -113,6 +129,7 @@ var I18n = require('react-i18nify').I18n;
 
 I18n.t('application.title'); // => returns 'Toffe app met i18n!' for locale 'nl'
 I18n.t('application.hello', {name: 'Aad'}); // => returns 'Hallo, Aad!' for locale 'nl'
+I18n.t('export', {count: 0}); // => returns 'Niks te exporteren' for locale 'nl'
 I18n.t('application.weird_key'); // => returns 'Weird key' as translation is missing
 
 I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'

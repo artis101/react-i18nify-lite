@@ -1,15 +1,18 @@
 const gulp = require('gulp');
-const babel = require("gulp-babel");
-require('gulp-dev-tasks');
+const babel = require('gulp-babel');
+const gdt = require('gulp-dev-tasks');
+const eslintrc = require('./.eslintrc.json');
 
 const source = ['src/**/*.js', 'src/**/*.jsx'];
 
-gulp.task('build', function() {
-  return gulp.src(source)
-    .pipe(babel({presets: ['es2015', 'react', 'stage-1']}))
-    .pipe(gulp.dest('build/'));
-});
+gdt.setRules(eslintrc.rules);
 
-gulp.task('default', ['lint', 'build'], function() {
+gulp.task('build', () => (
+  gulp.src(source)
+    .pipe(babel({ presets: ['es2015', 'react', 'stage-1'] }))
+    .pipe(gulp.dest('build/'))
+));
+
+gulp.task('default', ['lint', 'build'], () => {
   gulp.watch(source, ['lint', 'build']);
 });

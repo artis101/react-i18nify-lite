@@ -20,6 +20,8 @@ var _formatMissingTranslation2 = _interopRequireDefault(_formatMissingTranslatio
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint no-underscore-dangle: "off" */
+
 exports.default = {
   _localeKey: 'en',
   _translationsObject: {},
@@ -76,7 +78,7 @@ exports.default = {
 
     var translation = '';
     try {
-      translation = this._fetchTranslation(this._translations, this._locale + '.' + key);
+      translation = this._fetchTranslation(this._translations, this._locale + '.' + key, replacements.count);
     } catch (err) {
       return (0, _formatMissingTranslation2.default)(key);
     }
@@ -105,12 +107,24 @@ exports.default = {
     return value;
   },
   _fetchTranslation: function _fetchTranslation(translations, key) {
+    var count = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
     var _index = key.indexOf('.');
     if (typeof translations === 'undefined') {
       throw new Error('not found');
     }
     if (_index > -1) {
       return this._fetchTranslation(translations[key.substring(0, _index)], key.substr(_index + 1));
+    }
+    if (count !== null) {
+      if (translations[key + '_' + count]) {
+        // when key = 'items_3' if count is 3
+        return translations[key + '_' + count];
+      }
+      if (count !== 1 && translations[key + '_plural']) {
+        // when count is not simply singular, return _plural
+        return translations[key + '_plural'];
+      }
     }
     if (translations[key]) {
       return translations[key];
