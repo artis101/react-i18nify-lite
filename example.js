@@ -14,9 +14,9 @@ I18n.loadTranslations({
     date: {
       long: 'MMMM Do, YYYY'
     },
+    export: 'Export %{count} items',
     export_0: 'Nothing to export',
-    export_1: 'Export %{count} item',
-    export_plural: 'Export %{count} items'
+    export_1: 'Export %{count} item'
   },
   nl: {
     application: {
@@ -26,9 +26,9 @@ I18n.loadTranslations({
     date: {
       long: 'D MMMM YYYY'
     },
+    export: 'Exporteer %{count} dingen',
     export_0: 'Niks te exporteren',
-    export_1: 'Exporteer %{count} ding',
-    export_plural: 'Exporteer %{count} dingen'
+    export_1: 'Exporteer %{count} ding'
   }
 });
 
