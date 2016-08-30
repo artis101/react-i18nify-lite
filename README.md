@@ -86,7 +86,7 @@ function locale() {
   return 'nl';
 }
 
-I18n.setTranslationsGetter(translation_plurals):
+I18n.setTranslationsGetter(translation):
 I18n.setLocaleGetter(locale);
 ```
 Now you're all set up to start unleashing the power of `react-i18nify`!
