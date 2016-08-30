@@ -55,30 +55,30 @@ var I18n = require('react-i18nify').I18n;
 
 function translation() {
   return {
-      en: {
-        application: {
-          title: 'Awesome app with i18n!',
-          hello: 'Hello, %{name}!'
-        },
-        date: {
-          long: 'MMMM Do, YYYY'
-        },
-        export: 'Export %{count} items'
-        export_0: 'Nothing to export',
-        export_1: 'Export %{count} item',
+    en: {
+      application: {
+        title: 'Awesome app with i18n!',
+        hello: 'Hello, %{name}!'
       },
-      nl: {
-        application: {
-          title: 'Toffe app met i18n!',
-          hello: 'Hallo, %{name}!'
-        },
-        date: {
-          long: 'D MMMM YYYY'
-        },
-        export: 'Exporteer %{count} dingen'
-        export_0: 'Niks te exporteren',
-        export_1: 'Exporteer %{count} ding',
-      }
+      date: {
+        long: 'MMMM Do, YYYY'
+      },
+      export: 'Export %{count} items'
+      export_0: 'Nothing to export',
+      export_1: 'Export %{count} item',
+    },
+    nl: {
+      application: {
+        title: 'Toffe app met i18n!',
+        hello: 'Hallo, %{name}!'
+      },
+      date: {
+        long: 'D MMMM YYYY'
+      },
+      export: 'Exporteer %{count} dingen'
+      export_0: 'Niks te exporteren',
+      export_1: 'Exporteer %{count} ding',
+    }
   };
 }
 
@@ -134,7 +134,6 @@ I18n.t('application.weird_key'); // => returns 'Weird key' as translation is mis
 
 I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'
 I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale 'nl'
-
 ```
 
 ## Supported localize options
