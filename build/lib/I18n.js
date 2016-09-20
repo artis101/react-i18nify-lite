@@ -73,7 +73,16 @@ exports.default = {
   l: function l(value, options) {
     return this._localize(value, options);
   },
+  _replace: function _replace(translation, replacements) {
+    var replaced = translation;
+    Object.keys(replacements).forEach(function (replacement) {
+      replaced = replaced.split('%{' + replacement + '}').join(replacements[replacement]);
+    });
+    return replaced;
+  },
   _translate: function _translate(key) {
+    var _this = this;
+
     var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     var translation = '';
@@ -82,8 +91,11 @@ exports.default = {
     } catch (err) {
       return (0, _formatMissingTranslation2.default)(key);
     }
-    Object.keys(replacements).forEach(function (replacement) {
-      translation = translation.split('%{' + replacement + '}').join(replacements[replacement]);
+    if (typeof translation === 'string') {
+      return this._replace(translation, replacements);
+    }
+    Object.keys(translation).forEach(function (translationKey) {
+      translation[translationKey] = _this._replace(translation[translationKey], replacements);
     });
     return translation;
   },
