@@ -64,9 +64,12 @@ export default {
   _translate(key, replacements = {}) {
     let translation = '';
     try {
+      const translationLocale = this._translations[this._locale] ?
+        this._locale :
+        this._locale.split('-')[0];
       translation = this._fetchTranslation(
         this._translations,
-        `${this._locale}.${key}`,
+        `${translationLocale}.${key}`,
         replacements.count
       );
     } catch (err) {
