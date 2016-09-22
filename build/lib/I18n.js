@@ -87,7 +87,8 @@ exports.default = {
 
     var translation = '';
     try {
-      translation = this._fetchTranslation(this._translations, this._locale + '.' + key, replacements.count);
+      var translationLocale = this._translations[this._locale] ? this._locale : this._locale.split('-')[0];
+      translation = this._fetchTranslation(this._translations, translationLocale + '.' + key, replacements.count);
     } catch (err) {
       return (0, _formatMissingTranslation2.default)(key);
     }
