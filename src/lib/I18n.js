@@ -61,6 +61,13 @@ export default {
     return this._localize(value, options);
   },
 
+  _replace(translation, replacements) {
+    let replaced = translation;
+    Object.keys(replacements).forEach(replacement => {
+      replaced = replaced.split(`%{${replacement}}`).join(replacements[replacement]);
+    });
+    return replaced;
+  },
   _translate(key, replacements = {}) {
     let translation = '';
     try {
@@ -72,8 +79,11 @@ export default {
     } catch (err) {
       return formatMissingTranslation(key);
     }
-    Object.keys(replacements).forEach(replacement => {
-      translation = translation.split(`%{${replacement}}`).join(replacements[replacement]);
+    if (typeof translation === 'string') {
+      return this._replace(translation, replacements);
+    }
+    Object.keys(translation).forEach(translationKey => {
+      translation[translationKey] = this._replace(translation[translationKey], replacements);
     });
     return translation;
   },
