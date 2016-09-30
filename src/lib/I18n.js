@@ -36,14 +36,17 @@ export default {
   },
 
   setTranslations(translations, rerenderComponents = true) {
-    this.loadTranslations(translations);
+    this._translations = translations;
     if (rerenderComponents) {
       this.forceComponentsUpdate();
     }
   },
 
+  /**
+   * @deprecated
+   */
   loadTranslations(translations) {
-    this._translations = translations;
+    this.setTranslations(translations);
   },
 
   setTranslationsGetter(fn) {

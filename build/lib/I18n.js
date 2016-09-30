@@ -51,19 +51,24 @@ exports.default = {
 
     this._locale = locale;
     if (rerenderComponents) {
-      _Base2.default.rerenderAll();
+      this.forceComponentsUpdate();
     }
   },
   setTranslations: function setTranslations(translations) {
     var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-    this.loadTranslations(translations);
+    this._translations = translations;
     if (rerenderComponents) {
-      _Base2.default.rerenderAll();
+      this.forceComponentsUpdate();
     }
   },
+
+
+  /**
+   * @deprecated
+   */
   loadTranslations: function loadTranslations(translations) {
-    this._translations = translations;
+    this.setTranslations(translations);
   },
   setTranslationsGetter: function setTranslationsGetter(fn) {
     if (typeof fn !== 'function') {
@@ -155,5 +160,8 @@ exports.default = {
       return translations[key];
     }
     throw new Error('not found');
+  },
+  forceComponentsUpdate: function forceComponentsUpdate() {
+    _Base2.default.rerenderAll();
   }
 }; /* eslint no-underscore-dangle: "off" */

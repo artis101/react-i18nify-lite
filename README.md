@@ -18,7 +18,7 @@ Next, load the translations and locale to be used:
 ```javascript
 var I18n = require('react-i18nify').I18n;
 
-I18n.loadTranslations({
+I18n.setTranslations({
   en: {
     application: {
       title: 'Awesome app with i18n!',
@@ -120,6 +120,14 @@ var AwesomeComponent = React.createClass({
   }
 });
 ```
+
+## Keeping components updated
+
+When the translation object or locale values are set, all instances of `Translate` and `Localize` will be re-rendered to
+reflect the latest state. If you choose to use `I18n.l` or `I18n.t` then it up to you to handle state change.
+
+If you'd rather not to re-render components after setting locale or translations object, then pass `false` as a second
+argument to `setLocale` and/or `setTranslations`.
 
 ## Helpers
 
