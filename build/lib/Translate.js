@@ -14,6 +14,10 @@ var _I18n = require('./I18n');
 
 var _I18n2 = _interopRequireDefault(_I18n);
 
+var _Base = require('./Base');
+
+var _Base2 = _interopRequireDefault(_Base);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22,8 +26,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint no-underscore-dangle: "off" */
 
-var Translate = function (_React$Component) {
-  _inherits(Translate, _React$Component);
+var Translate = function (_BaseComponent) {
+  _inherits(Translate, _BaseComponent);
 
   function Translate() {
     var _ref;
@@ -50,7 +54,7 @@ var Translate = function (_React$Component) {
   }
 
   return Translate;
-}(_react2.default.Component);
+}(_Base2.default);
 
 Translate.propTypes = {
   value: _react2.default.PropTypes.string.isRequired

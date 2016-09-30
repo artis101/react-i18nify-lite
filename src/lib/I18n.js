@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/min/locales';
 import IntlPolyfill from 'intl';
 import formatMissingTranslation from './formatMissingTranslation';
+import BaseComponent from './Base';
 
 export default {
   _localeKey: 'en',
@@ -27,12 +28,18 @@ export default {
     this._localeKey = locale;
   },
 
-  setLocale(locale) {
+  setLocale(locale, rerenderComponents = true) {
     this._locale = locale;
+    if (rerenderComponents) {
+      BaseComponent.rerenderAll();
+    }
   },
 
-  setTranslations(translations) {
+  setTranslations(translations, rerenderComponents = true) {
     this.loadTranslations(translations);
+    if (rerenderComponents) {
+      BaseComponent.rerenderAll();
+    }
   },
 
   loadTranslations(translations) {

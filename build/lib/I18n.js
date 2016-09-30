@@ -18,9 +18,11 @@ var _formatMissingTranslation = require('./formatMissingTranslation');
 
 var _formatMissingTranslation2 = _interopRequireDefault(_formatMissingTranslation);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Base = require('./Base');
 
-/* eslint no-underscore-dangle: "off" */
+var _Base2 = _interopRequireDefault(_Base);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   _localeKey: 'en',
@@ -45,10 +47,20 @@ exports.default = {
   },
 
   setLocale: function setLocale(locale) {
+    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
     this._locale = locale;
+    if (rerenderComponents) {
+      _Base2.default.rerenderAll();
+    }
   },
   setTranslations: function setTranslations(translations) {
+    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
     this.loadTranslations(translations);
+    if (rerenderComponents) {
+      _Base2.default.rerenderAll();
+    }
   },
   loadTranslations: function loadTranslations(translations) {
     this._translations = translations;
@@ -66,7 +78,7 @@ exports.default = {
     this._getLocale = fn;
   },
   t: function t(key) {
-    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     return this._translate(key, replacements);
   },
@@ -83,7 +95,7 @@ exports.default = {
   _translate: function _translate(key) {
     var _this = this;
 
-    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     var translation = '';
     try {
@@ -101,7 +113,7 @@ exports.default = {
     return translation;
   },
   _localize: function _localize(value) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (options.dateFormat) {
       _moment2.default.locale(this._locale);
@@ -120,7 +132,7 @@ exports.default = {
     return value;
   },
   _fetchTranslation: function _fetchTranslation(translations, key) {
-    var count = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
     var _index = key.indexOf('.');
     if (typeof translations === 'undefined') {
@@ -144,4 +156,4 @@ exports.default = {
     }
     throw new Error('not found');
   }
-};
+}; /* eslint no-underscore-dangle: "off" */
