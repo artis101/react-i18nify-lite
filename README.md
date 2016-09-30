@@ -1,7 +1,7 @@
 # react-i18nify
 Simple i18n translation and localization components and helpers for React applications.
 
-[![npm version](https://badge.fury.io/js/react-i18nify.svg)](https://badge.fury.io/js/react-i18nify)
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
 
 A working example of this package can be found [here at Tonic](https://tonicdev.com/npm/react-i18nify).
 
@@ -150,3 +150,8 @@ I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale '
 The localize component and helper support all date formatting options as provided by the Javascript `moment` library. For the full list of options, see http://momentjs.com/docs/#/displaying/format/.
 
 For number formatting, the localize component and helper support all options as provided by the Javascript built-in `Intl.NumberFormat` object. For the full list of options, see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat.
+
+[downloads-image]: http://img.shields.io/npm/dm/react-i18nify.svg
+
+[npm-url]: https://npmjs.org/package/react-i18nify
+[npm-image]: http://img.shields.io/npm/v/react-i18nify.svg
