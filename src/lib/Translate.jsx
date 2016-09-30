@@ -2,8 +2,10 @@
 
 import React from 'react';
 import I18n from './I18n';
+import BaseComponent from './Base';
 
-export default class Translate extends React.Component {
+export default class Translate extends BaseComponent {
+
   static propTypes = {
     value: React.PropTypes.string.isRequired,
   };

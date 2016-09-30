@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/min/locales';
 import IntlPolyfill from 'intl';
 import formatMissingTranslation from './formatMissingTranslation';
+import BaseComponent from './Base';
 
 export default {
   _localeKey: 'en',
@@ -27,16 +28,25 @@ export default {
     this._localeKey = locale;
   },
 
-  setLocale(locale) {
+  setLocale(locale, rerenderComponents = true) {
     this._locale = locale;
+    if (rerenderComponents) {
+      this.forceComponentsUpdate();
+    }
   },
 
-  setTranslations(translations) {
-    this.loadTranslations(translations);
-  },
-
-  loadTranslations(translations) {
+  setTranslations(translations, rerenderComponents = true) {
     this._translations = translations;
+    if (rerenderComponents) {
+      this.forceComponentsUpdate();
+    }
+  },
+
+  /**
+   * @deprecated
+   */
+  loadTranslations(translations) {
+    this.setTranslations(translations);
   },
 
   setTranslationsGetter(fn) {
@@ -136,5 +146,9 @@ export default {
       return translations[key];
     }
     throw new Error('not found');
+  },
+
+  forceComponentsUpdate() {
+    BaseComponent.rerenderAll();
   },
 };
