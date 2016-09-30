@@ -31,14 +31,14 @@ export default {
   setLocale(locale, rerenderComponents = true) {
     this._locale = locale;
     if (rerenderComponents) {
-      BaseComponent.rerenderAll();
+      this.forceComponentsUpdate();
     }
   },
 
   setTranslations(translations, rerenderComponents = true) {
     this.loadTranslations(translations);
     if (rerenderComponents) {
-      BaseComponent.rerenderAll();
+      this.forceComponentsUpdate();
     }
   },
 
@@ -143,5 +143,9 @@ export default {
       return translations[key];
     }
     throw new Error('not found');
+  },
+
+  forceComponentsUpdate() {
+    BaseComponent.rerenderAll();
   },
 };
