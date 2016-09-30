@@ -5,7 +5,7 @@ var I18n = require('react-i18nify').I18n;
 var Translate = require('react-i18nify').Translate;
 var Localize = require('react-i18nify').Localize;
 
-I18n.loadTranslations({
+I18n.setTranslations({
   en: {
     application: {
       title: 'Awesome app with i18n!',
