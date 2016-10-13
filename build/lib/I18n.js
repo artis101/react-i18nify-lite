@@ -47,7 +47,7 @@ exports.default = {
   },
 
   setLocale: function setLocale(locale) {
-    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var rerenderComponents = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
     this._locale = locale;
     if (rerenderComponents) {
@@ -55,7 +55,7 @@ exports.default = {
     }
   },
   setTranslations: function setTranslations(translations) {
-    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var rerenderComponents = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
     this._translations = translations;
     if (rerenderComponents) {
@@ -83,7 +83,7 @@ exports.default = {
     this._getLocale = fn;
   },
   t: function t(key) {
-    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     return this._translate(key, replacements);
   },
@@ -91,16 +91,22 @@ exports.default = {
     return this._localize(value, options);
   },
   _replace: function _replace(translation, replacements) {
+    var _this = this;
+
     var replaced = translation;
-    Object.keys(replacements).forEach(function (replacement) {
-      replaced = replaced.split('%{' + replacement + '}').join(replacements[replacement]);
+    if (typeof translation === 'string') {
+      Object.keys(replacements).forEach(function (replacement) {
+        replaced = replaced.split('%{' + replacement + '}').join(replacements[replacement]);
+      });
+      return replaced;
+    }
+    Object.keys(replaced).forEach(function (translationKey) {
+      replaced[translationKey] = _this._replace(replaced[translationKey], replacements);
     });
     return replaced;
   },
   _translate: function _translate(key) {
-    var _this = this;
-
-    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     var translation = '';
     try {
@@ -109,16 +115,10 @@ exports.default = {
     } catch (err) {
       return (0, _formatMissingTranslation2.default)(key);
     }
-    if (typeof translation === 'string') {
-      return this._replace(translation, replacements);
-    }
-    Object.keys(translation).forEach(function (translationKey) {
-      translation[translationKey] = _this._replace(translation[translationKey], replacements);
-    });
-    return translation;
+    return this._replace(translation, replacements);
   },
   _localize: function _localize(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     if (options.dateFormat) {
       _moment2.default.locale(this._locale);
@@ -137,7 +137,7 @@ exports.default = {
     return value;
   },
   _fetchTranslation: function _fetchTranslation(translations, key) {
-    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var count = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
 
     var _index = key.indexOf('.');
     if (typeof translations === 'undefined') {
