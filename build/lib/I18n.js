@@ -24,11 +24,14 @@ var _Base2 = _interopRequireDefault(_Base);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var handleMissingTranslation = _formatMissingTranslation2.default; /* eslint no-underscore-dangle: "off" */
+
 exports.default = {
   _localeKey: 'en',
   _translationsObject: {},
   _getTranslations: null,
   _getLocale: null,
+  _handleMissingTranslation: handleMissingTranslation,
 
   get _translations() {
     return this._getTranslations ? this._getTranslations() : this._translationsObject;
@@ -47,7 +50,7 @@ exports.default = {
   },
 
   setLocale: function setLocale(locale) {
-    var rerenderComponents = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
     this._locale = locale;
     if (rerenderComponents) {
@@ -55,7 +58,7 @@ exports.default = {
     }
   },
   setTranslations: function setTranslations(translations) {
-    var rerenderComponents = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
     this._translations = translations;
     if (rerenderComponents) {
@@ -82,8 +85,14 @@ exports.default = {
     }
     this._getLocale = fn;
   },
+  setHandleMissingTranslation: function setHandleMissingTranslation(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('Handle missing translation must be a function');
+    }
+    this._handleMissingTranslation = fn;
+  },
   t: function t(key) {
-    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     return this._translate(key, replacements);
   },
@@ -106,19 +115,19 @@ exports.default = {
     return replaced;
   },
   _translate: function _translate(key) {
-    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     var translation = '';
     try {
       var translationLocale = this._translations[this._locale] ? this._locale : this._locale.split('-')[0];
       translation = this._fetchTranslation(this._translations, translationLocale + '.' + key, replacements.count);
     } catch (err) {
-      return (0, _formatMissingTranslation2.default)(key);
+      return this._handleMissingTranslation(key);
     }
     return this._replace(translation, replacements);
   },
   _localize: function _localize(value) {
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (options.dateFormat) {
       _moment2.default.locale(this._locale);
@@ -137,7 +146,7 @@ exports.default = {
     return value;
   },
   _fetchTranslation: function _fetchTranslation(translations, key) {
-    var count = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
     var _index = key.indexOf('.');
     if (typeof translations === 'undefined') {
@@ -164,4 +173,4 @@ exports.default = {
   forceComponentsUpdate: function forceComponentsUpdate() {
     _Base2.default.rerenderAll();
   }
-}; /* eslint no-underscore-dangle: "off" */
+};

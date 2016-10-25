@@ -5,7 +5,9 @@ import 'moment/min/locales';
 import IntlPolyfill from 'intl';
 import formatMissingTranslation from './formatMissingTranslation';
 import BaseComponent from './Base';
-let handleMissingTranslation = formatMissingTranslation
+
+const handleMissingTranslation = formatMissingTranslation;
+
 export default {
   _localeKey: 'en',
   _translationsObject: {},
@@ -67,7 +69,7 @@ export default {
     if (typeof fn !== 'function') {
       throw new Error('Handle missing translation must be a function');
     }
-    this._handleMissingTranslation = fn
+    this._handleMissingTranslation = fn;
   },
   t(key, replacements = {}) {
     return this._translate(key, replacements);
