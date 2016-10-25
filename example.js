@@ -57,8 +57,6 @@ function AwesomeComponent() {
       <Translate value="export" count={1} />
       <br />
       <Translate value="export" count={2} />
-      <br />
-      <Translate value="noKey" />
     </div>
   );
 }
