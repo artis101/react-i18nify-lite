@@ -50,7 +50,7 @@ exports.default = {
   },
 
   setLocale: function setLocale(locale) {
-    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var rerenderComponents = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
     this._locale = locale;
     if (rerenderComponents) {
@@ -58,7 +58,7 @@ exports.default = {
     }
   },
   setTranslations: function setTranslations(translations) {
-    var rerenderComponents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var rerenderComponents = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
     this._translations = translations;
     if (rerenderComponents) {
@@ -92,7 +92,7 @@ exports.default = {
     this._handleMissingTranslation = fn;
   },
   t: function t(key) {
-    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     return this._translate(key, replacements);
   },
@@ -115,7 +115,7 @@ exports.default = {
     return replaced;
   },
   _translate: function _translate(key) {
-    var replacements = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var replacements = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     var translation = '';
     try {
@@ -127,7 +127,7 @@ exports.default = {
     return this._replace(translation, replacements);
   },
   _localize: function _localize(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     if (options.dateFormat) {
       _moment2.default.locale(this._locale);
@@ -146,7 +146,7 @@ exports.default = {
     return value;
   },
   _fetchTranslation: function _fetchTranslation(translations, key) {
-    var count = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    var count = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
 
     var _index = key.indexOf('.');
     if (typeof translations === 'undefined') {
@@ -173,4 +173,4 @@ exports.default = {
   forceComponentsUpdate: function forceComponentsUpdate() {
     _Base2.default.rerenderAll();
   }
-};
+}; /* eslint no-underscore-dangle: "off" */
