@@ -173,4 +173,4 @@ exports.default = {
   forceComponentsUpdate: function forceComponentsUpdate() {
     _Base2.default.rerenderAll();
   }
-}; /* eslint no-underscore-dangle: "off" */
+};
