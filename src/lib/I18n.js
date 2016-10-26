@@ -6,11 +6,14 @@ import IntlPolyfill from 'intl';
 import formatMissingTranslation from './formatMissingTranslation';
 import BaseComponent from './Base';
 
+const handleMissingTranslation = formatMissingTranslation;
+
 export default {
   _localeKey: 'en',
   _translationsObject: {},
   _getTranslations: null,
   _getLocale: null,
+  _handleMissingTranslation: handleMissingTranslation,
 
   get _translations() {
     return this._getTranslations ? this._getTranslations() : this._translationsObject;
@@ -62,7 +65,12 @@ export default {
     }
     this._getLocale = fn;
   },
-
+  setHandleMissingTranslation(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('Handle missing translation must be a function');
+    }
+    this._handleMissingTranslation = fn;
+  },
   t(key, replacements = {}) {
     return this._translate(key, replacements);
   },
@@ -97,7 +105,7 @@ export default {
         replacements.count
       );
     } catch (err) {
-      return formatMissingTranslation(key);
+      return this._handleMissingTranslation(key);
     }
     return this._replace(translation, replacements);
   },
