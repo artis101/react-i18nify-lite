@@ -8,7 +8,7 @@ export default class Base extends React.Component {
     Base.instances.forEach(instance => instance.forceUpdate());
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Base.instances.push(this);
   }
 
