@@ -28,8 +28,8 @@ var Base = function (_React$Component) {
   }
 
   _createClass(Base, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
       Base.instances.push(this);
     }
   }, {
