@@ -25,6 +25,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint no-underscore-dangle: "off" */
+/* eslint react/no-danger: "off" */
 
 var Translate = function (_BaseComponent) {
   _inherits(Translate, _BaseComponent);
@@ -45,10 +46,14 @@ var Translate = function (_BaseComponent) {
       delete result.value;
       return result;
     }, _this.render = function () {
+      var translation = _I18n2.default._translate(_this.props.value, _this.otherProps());
+      if (_this.props.dangerousHTML) {
+        return _react2.default.createElement('span', { style: _this.props.style, dangerouslySetInnerHTML: { __html: translation } });
+      }
       return _react2.default.createElement(
         'span',
-        null,
-        _I18n2.default._translate(_this.props.value, _this.otherProps())
+        { style: _this.props.style },
+        translation
       );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -57,6 +62,11 @@ var Translate = function (_BaseComponent) {
 }(_Base2.default);
 
 Translate.propTypes = {
-  value: _react2.default.PropTypes.string.isRequired
+  value: _react2.default.PropTypes.string.isRequired,
+  dangerousHTML: _react2.default.PropTypes.bool,
+  /**
+   * Optional styling
+   */
+  style: _react2.default.PropTypes.objectOf(_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]))
 };
 exports.default = Translate;

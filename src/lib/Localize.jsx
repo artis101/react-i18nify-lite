@@ -1,4 +1,5 @@
 /* eslint no-underscore-dangle: "off" */
+/* eslint react/no-danger: "off" */
 
 import React from 'react';
 import I18n from './I18n';
@@ -13,16 +14,28 @@ export default class Localize extends BaseComponent {
       React.PropTypes.object]).isRequired,
     options: React.PropTypes.object,
     dateFormat: React.PropTypes.string,
+    dangerousHTML: React.PropTypes.bool,
+    /**
+     * Optional styling
+     */
+    style: React.PropTypes.objectOf(
+      React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string,
+      ])
+    ),
   };
 
-  render = () => (
-    <span>
-      {I18n._localize(
-        this.props.value,
-        this.props.dateFormat
-          ? { dateFormat: this.props.dateFormat }
-          : this.props.options
-      )}
-    </span>
-  );
+  render = () => {
+    const localization = I18n._localize(
+      this.props.value,
+      this.props.dateFormat
+        ? { dateFormat: this.props.dateFormat }
+        : this.props.options
+    );
+    if (this.props.dangerousHTML) {
+      return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: localization }} />;
+    }
+    return <span style={this.props.style}>{localization}</span>;
+  }
 }

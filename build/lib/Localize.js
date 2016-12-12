@@ -23,6 +23,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint no-underscore-dangle: "off" */
+/* eslint react/no-danger: "off" */
 
 var Localize = function (_BaseComponent) {
   _inherits(Localize, _BaseComponent);
@@ -39,10 +40,14 @@ var Localize = function (_BaseComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Localize.__proto__ || Object.getPrototypeOf(Localize)).call.apply(_ref, [this].concat(args))), _this), _this.render = function () {
+      var localization = _I18n2.default._localize(_this.props.value, _this.props.dateFormat ? { dateFormat: _this.props.dateFormat } : _this.props.options);
+      if (_this.props.dangerousHTML) {
+        return _react2.default.createElement('span', { style: _this.props.style, dangerouslySetInnerHTML: { __html: localization } });
+      }
       return _react2.default.createElement(
         'span',
-        null,
-        _I18n2.default._localize(_this.props.value, _this.props.dateFormat ? { dateFormat: _this.props.dateFormat } : _this.props.options)
+        { style: _this.props.style },
+        localization
       );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -53,6 +58,11 @@ var Localize = function (_BaseComponent) {
 Localize.propTypes = {
   value: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number, _react2.default.PropTypes.object]).isRequired,
   options: _react2.default.PropTypes.object,
-  dateFormat: _react2.default.PropTypes.string
+  dateFormat: _react2.default.PropTypes.string,
+  dangerousHTML: _react2.default.PropTypes.bool,
+  /**
+   * Optional styling
+   */
+  style: _react2.default.PropTypes.objectOf(_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number, _react2.default.PropTypes.string]))
 };
 exports.default = Localize;

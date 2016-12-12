@@ -9,7 +9,7 @@ gdt.setRules(eslintrc.rules);
 
 gulp.task('build', () => (
   gulp.src(source)
-    .pipe(babel({ presets: ['es2015', 'react', 'stage-1'] }))
+    .pipe(babel())
     .pipe(gulp.dest('build/'))
 ));
 

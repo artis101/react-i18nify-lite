@@ -1,9 +1,15 @@
-var React = require('react');
-var ReactDOM = require('react-dom/server');
+const React = require('react');
+const ReactDOM = require('react-dom/server');
 
-var I18n = require('react-i18nify').I18n;
-var Translate = require('react-i18nify').Translate;
-var Localize = require('react-i18nify').Localize;
+let ReactI18nfiy = null;
+
+try {
+  ReactI18nfiy = require('react-i18nify'); //
+} catch (e) {
+  ReactI18nfiy = require('./build/index.js');
+}
+
+const { I18n, Translate, Localize } = ReactI18nfiy;
 
 I18n.setTranslations({
   en: {
@@ -16,7 +22,8 @@ I18n.setTranslations({
     },
     export: 'Export %{count} items',
     export_0: 'Nothing to export',
-    export_1: 'Export %{count} item'
+    export_1: 'Export %{count} item',
+    two_lines: 'Line 1<br />Line 2'
   },
   nl: {
     application: {
@@ -28,7 +35,8 @@ I18n.setTranslations({
     },
     export: 'Exporteer %{count} dingen',
     export_0: 'Niks te exporteren',
-    export_1: 'Exporteer %{count} ding'
+    export_1: 'Exporteer %{count} ding',
+    two_lines: 'Regel 1<br />Regel 2'
   }
 });
 
@@ -48,6 +56,8 @@ function AwesomeComponent() {
     <div>
       <Translate value="application.title" />
       <br />
+      <Translate value="application.title" style={{ fontWeight: 'bold', fontSize: '14px' }} />
+      <br />
       <Translate value="application.hello" name="Aad" />
       <br />
       <Localize value="2015-09-03" dateFormat="date.long" />
@@ -57,8 +67,10 @@ function AwesomeComponent() {
       <Translate value="export" count={1} />
       <br />
       <Translate value="export" count={2} />
+      <br />
+      <Translate value="two_lines" dangerousHTML />
     </div>
   );
 }
 
-ReactDOM.renderToString(<AwesomeComponent/>);
+console.log(ReactDOM.renderToString(<AwesomeComponent />));
