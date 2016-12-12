@@ -9,6 +9,15 @@ export default class Translate extends BaseComponent {
   static propTypes = {
     value: React.PropTypes.string.isRequired,
     html: React.PropTypes.bool,
+    /**
+     * Optional styling
+     */
+    style: React.PropTypes.objectOf(
+      React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string,
+      ])
+    ),
   };
 
   otherProps = () => {
@@ -20,8 +29,8 @@ export default class Translate extends BaseComponent {
   render = () => {
     const translation = I18n._translate(this.props.value, this.otherProps());
     if (this.props.html) {
-      return <span dangerouslySetInnerHTML={{ __html: translation }} />;
+      return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: translation }} />;
     }
-    return <span>{translation}</span>;
+    return <span style={this.props.style}>{translation}</span>;
   }
 }

@@ -56,6 +56,8 @@ function AwesomeComponent() {
     <div>
       <Translate value="application.title" />
       <br />
+      <Translate value="application.title" style={{ fontWeight: 'bold', fontSize: '14px' }} />
+      <br />
       <Translate value="application.hello" name="Aad" />
       <br />
       <Localize value="2015-09-03" dateFormat="date.long" />

@@ -15,6 +15,15 @@ export default class Localize extends BaseComponent {
     options: React.PropTypes.object,
     dateFormat: React.PropTypes.string,
     html: React.PropTypes.bool,
+    /**
+     * Optional styling
+     */
+    style: React.PropTypes.objectOf(
+      React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string,
+      ])
+    ),
   };
 
   render = () => {
@@ -25,8 +34,8 @@ export default class Localize extends BaseComponent {
         : this.props.options
     );
     if (this.props.html) {
-      return <span dangerouslySetInnerHTML={{ __html: localization }} />;
+      return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: localization }} />;
     }
-    return <span>{localization}</span>;
+    return <span style={this.props.style}>{localization}</span>;
   }
 }
