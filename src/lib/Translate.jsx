@@ -8,7 +8,7 @@ import BaseComponent from './Base';
 export default class Translate extends BaseComponent {
   static propTypes = {
     value: React.PropTypes.string.isRequired,
-    html: React.PropTypes.bool,
+    dangerousHTML: React.PropTypes.bool,
     /**
      * Optional styling
      */
@@ -28,7 +28,7 @@ export default class Translate extends BaseComponent {
 
   render = () => {
     const translation = I18n._translate(this.props.value, this.otherProps());
-    if (this.props.html) {
+    if (this.props.dangerousHTML) {
       return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: translation }} />;
     }
     return <span style={this.props.style}>{translation}</span>;

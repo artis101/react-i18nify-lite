@@ -14,7 +14,7 @@ export default class Localize extends BaseComponent {
       React.PropTypes.object]).isRequired,
     options: React.PropTypes.object,
     dateFormat: React.PropTypes.string,
-    html: React.PropTypes.bool,
+    dangerousHTML: React.PropTypes.bool,
     /**
      * Optional styling
      */
@@ -33,7 +33,7 @@ export default class Localize extends BaseComponent {
         ? { dateFormat: this.props.dateFormat }
         : this.props.options
     );
-    if (this.props.html) {
+    if (this.props.dangerousHTML) {
       return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: localization }} />;
     }
     return <span style={this.props.style}>{localization}</span>;

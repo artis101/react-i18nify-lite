@@ -68,7 +68,7 @@ function AwesomeComponent() {
       <br />
       <Translate value="export" count={2} />
       <br />
-      <Translate value="two_lines" html={true} />
+      <Translate value="two_lines" dangerousHTML />
     </div>
   );
 }

@@ -119,7 +119,7 @@ var AwesomeComponent = React.createClass({
           // => returns '<span>Exporteer 1 ding</span> for locale 'nl'
         <Translate value="export" count={2} />
           // => returns '<span>Exporteer 2 dingen</span> for locale 'nl'
-        <Translate value="two_lines" html={true} />
+        <Translate value="two_lines" dangerousHTML />
           // => returns '<span>Regel 1<br />Regel 2</span>'
       </div>
     );
