@@ -63,9 +63,10 @@ function translation() {
       date: {
         long: 'MMMM Do, YYYY'
       },
-      export: 'Export %{count} items'
+      export: 'Export %{count} items',
       export_0: 'Nothing to export',
       export_1: 'Export %{count} item',
+      two_lines: 'Line 1<br />Line 2'
     },
     nl: {
       application: {
@@ -75,9 +76,10 @@ function translation() {
       date: {
         long: 'D MMMM YYYY'
       },
-      export: 'Exporteer %{count} dingen'
+      export: 'Exporteer %{count} dingen',
       export_0: 'Niks te exporteren',
       export_1: 'Exporteer %{count} ding',
+      two_lines: 'Regel 1<br />Regel 2'
     }
   };
 }
@@ -115,6 +117,8 @@ var AwesomeComponent = React.createClass({
           // => returns '<span>Exporteer 1 ding</span> for locale 'nl'
         <Translate value="export" count={2} />
           // => returns '<span>Exporteer 2 dingen</span> for locale 'nl'
+        <Translate value="two_lines" html={true} />
+          // => returns '<span>Regel 1<br />Regel 2</span>'
       </div>
     );
   }
