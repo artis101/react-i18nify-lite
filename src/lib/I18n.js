@@ -105,7 +105,7 @@ export default {
         replacements.count
       );
     } catch (err) {
-      return this._handleMissingTranslation(key);
+      return this._handleMissingTranslation(key, replacements);
     }
     return this._replace(translation, replacements);
   },

@@ -139,3 +139,59 @@ For number formatting, the localize component and helper support all options as 
 
 [npm-url]: https://npmjs.org/package/react-i18nify
 [npm-image]: http://img.shields.io/npm/v/react-i18nify.svg
+
+## Fallback on translation missing
+
+The library itself doesn't have this functionality so it's up to you to setup it. For example, you can use
+"parent tree lookup with common translations" strategy:
+
+```javascript
+var I18n = require('react-i18nify').I18n;
+
+I18n.setTranslations({
+  en: {
+    countries: {
+      $: {
+        capital: "Unknown"
+      },
+      germany: {
+        capital: "Berlin"
+      },
+      spain: {
+        capital: "Madrid"
+      },
+      france: {
+        capital: "Paris"
+      }
+    }
+  }
+});
+
+I18n.setHandleMissingTranslation(function(key, options) {
+  let fallbackParts = key.split(".").reduce(function(acc, part) {
+    let prevPart = acc[1];
+    if(prevPart != '$') acc[0].push(prevPart);
+    acc[1] = part;
+    return acc;
+  }, [[], '$']);
+
+  options = Object.assign({}, { $tKey: key }, options);
+
+  if(fallbackParts[0].length > 0) {
+    fallbackParts[0].splice(-1, 1, '$', fallbackParts[1]);
+    let fallbackKey = fallbackParts[0].join('.');
+    return I18n.t(fallbackKey, options);
+  } else {
+    return `:M:${options.$tKey}`
+  }
+});
+
+I18n.t("countries.germany.capital"); // => "Berlin"
+I18n.t("countries.spain.capital"); // => "Madrid"
+I18n.t("countries.usa.capital"); // => "Unknown"
+// it will looks at the next keys
+// "countries.usa.capital"
+// "countries.$.capital"
+// "$.capital"
+// If there isn't any valid translation it returns ":M:countries.usa.capital"
+```
