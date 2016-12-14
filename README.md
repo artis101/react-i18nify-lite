@@ -15,8 +15,9 @@ npm i react-i18nify --save
 ```
 
 Next, load the translations and locale to be used:
+
 ```javascript
-var I18n = require('react-i18nify').I18n;
+const I18n = require('react-i18nify').I18n;
 
 I18n.setTranslations({
   en: {
@@ -52,8 +53,9 @@ I18n.setLocale('nl');
 
 Alternatively, you can provide a callback to return the translations and locale to
 `setTranslationsGetter` and `setLocaleGetter` respectively.
+
 ```javascript
-var I18n = require('react-i18nify').I18n;
+const I18n = require('react-i18nify').I18n;
 
 function translation() {
   return {
@@ -69,17 +71,18 @@ function locale() {
 I18n.setTranslationsGetter(translation):
 I18n.setLocaleGetter(locale);
 ```
+
 Now you're all set up to start unleashing the power of `react-i18nify`!
 
 ## Components
 
 The easiest way to translate or localize in your React components is by using the `Translate` and `Localize` components:
 ```javascript
-var React = require('react');
-var Translate = require('react-i18nify').Translate;
-var Localize = require('react-i18nify').Localize;
+const React = require('react');
+const Translate = require('react-i18nify').Translate;
+const Localize = require('react-i18nify').Localize;
 
-var AwesomeComponent = React.createClass({
+const AwesomeComponent = React.createClass({
   render: function() {
     return (
       <div>
@@ -117,12 +120,12 @@ argument to `setLocale` and/or `setTranslations`.
 
 If for some reason, you cannot use the components, you can use the `I18n.t` and `I18n.l` helpers instead:
 ```javascript
-var I18n = require('react-i18nify').I18n;
+const I18n = require('react-i18nify').I18n;
 
 I18n.t('application.title'); // => returns 'Toffe app met i18n!' for locale 'nl'
 I18n.t('application.hello', {name: 'Aad'}); // => returns 'Hallo, Aad!' for locale 'nl'
 I18n.t('export', {count: 0}); // => returns 'Niks te exporteren' for locale 'nl'
-I18n.t('application.weird_key'); // => returns 'Weird key' as translation is missing
+I18n.t('application.unknown_translation'); // => returns 'Unknown Translation' as translation is missing
 I18n.t('application', {name: 'Aad'}); // => returns {hello: "Hallo, Aad!", title: "Toffe app met i18n!"} for locale 'nl'
 
 I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'
@@ -135,63 +138,28 @@ The localize component and helper support all date formatting options as provide
 
 For number formatting, the localize component and helper support all options as provided by the Javascript built-in `Intl.NumberFormat` object. For the full list of options, see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat.
 
-[downloads-image]: http://img.shields.io/npm/dm/react-i18nify.svg
-
-[npm-url]: https://npmjs.org/package/react-i18nify
-[npm-image]: http://img.shields.io/npm/v/react-i18nify.svg
-
 ## Fallback on translation missing
+
+By default, when a translation is missing, the translation key will be returned in a slightly formatted way,
+as can be seen in the `I18n.t('application.unknown_translation');` example above.
+You can however overwrite this behavior by setting a function to handle missing translations.
+
+```javascript
+const I18n = require('react-i18nify').I18n;
+
+function myHandleMissingTranslation(key, replacements) {
+  return `Missing translation: ${key}`;
+}
+
+I18n.setHandleMissingTranslation(myHandleMissingTranslation):
+
+I18n.t('application.unknown_translation'); // => returns 'Missing translation: application.unknown_translation'
+```
 
 The library itself doesn't have this functionality so it's up to you to setup it. For example, you can use
 "parent tree lookup with common translations" strategy:
 
-```javascript
-var I18n = require('react-i18nify').I18n;
+[downloads-image]: http://img.shields.io/npm/dm/react-i18nify.svg
 
-I18n.setTranslations({
-  en: {
-    countries: {
-      $: {
-        capital: "Unknown"
-      },
-      germany: {
-        capital: "Berlin"
-      },
-      spain: {
-        capital: "Madrid"
-      },
-      france: {
-        capital: "Paris"
-      }
-    }
-  }
-});
-
-I18n.setHandleMissingTranslation(function(key, options) {
-  let fallbackParts = key.split(".").reduce(function(acc, part) {
-    let prevPart = acc[1];
-    if(prevPart != '$') acc[0].push(prevPart);
-    acc[1] = part;
-    return acc;
-  }, [[], '$']);
-
-  options = Object.assign({}, { $tKey: key }, options);
-
-  if(fallbackParts[0].length > 0) {
-    fallbackParts[0].splice(-1, 1, '$', fallbackParts[1]);
-    let fallbackKey = fallbackParts[0].join('.');
-    return I18n.t(fallbackKey, options);
-  } else {
-    return `:M:${options.$tKey}`
-  }
-});
-
-I18n.t("countries.germany.capital"); // => "Berlin"
-I18n.t("countries.spain.capital"); // => "Madrid"
-I18n.t("countries.usa.capital"); // => "Unknown"
-// it will looks at the next keys
-// "countries.usa.capital"
-// "countries.$.capital"
-// "$.capital"
-// If there isn't any valid translation it returns ":M:countries.usa.capital"
-```
+[npm-url]: https://npmjs.org/package/react-i18nify
+[npm-image]: http://img.shields.io/npm/v/react-i18nify.svg

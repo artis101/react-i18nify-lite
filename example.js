@@ -43,13 +43,21 @@ I18n.setTranslations({
 I18n.setLocale('nl');
 
 console.log(I18n.t('application.title'));
-console.log(I18n.t('application.hello', {name: 'Aad'}));
-console.log(I18n.t('export', {count: 0}));
-console.log(I18n.t('application.weird_key'));
-console.log(I18n.t('application', {name: 'Aad'}));
+console.log(I18n.t('application.hello', { name: 'Aad' }));
+console.log(I18n.t('export', { count: 0 }));
+console.log(I18n.t('application.unknown_translation'));
+console.log(I18n.t('application', { name: 'Aad' }));
 
 console.log(I18n.l(1385856000000, { dateFormat: 'date.long' }));
 console.log(I18n.l(Math.PI, { maximumFractionDigits: 2 }));
+
+function myHandleMissingTranslation(key, replacements) {
+  return `Missing translation: ${key}`;
+}
+
+I18n.setHandleMissingTranslation(myHandleMissingTranslation);
+
+console.log(I18n.t('application.unknown_translation'));
 
 function AwesomeComponent() {
   return (
@@ -62,7 +70,7 @@ function AwesomeComponent() {
       <br />
       <Localize value="2015-09-03" dateFormat="date.long" />
       <br />
-      <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}} />
+      <Localize value={10 / 3} options={{ style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2 }} />
       <br />
       <Translate value="export" count={1} />
       <br />

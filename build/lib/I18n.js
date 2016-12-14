@@ -122,7 +122,7 @@ exports.default = {
       var translationLocale = this._translations[this._locale] ? this._locale : this._locale.split('-')[0];
       translation = this._fetchTranslation(this._translations, translationLocale + '.' + key, replacements.count);
     } catch (err) {
-      return this._handleMissingTranslation(key);
+      return this._handleMissingTranslation(key, replacements);
     }
     return this._replace(translation, replacements);
   },
