@@ -10,6 +10,7 @@ If you're using Redux or Fluxible, feel free to use [react-redux-i18n](https://g
 ## Preparation
 
 First install the package:
+
 ```
 npm i react-i18nify --save
 ```
@@ -77,6 +78,7 @@ Now you're all set up to start unleashing the power of `react-i18nify`!
 ## Components
 
 The easiest way to translate or localize in your React components is by using the `Translate` and `Localize` components:
+
 ```javascript
 const React = require('react');
 const Translate = require('react-i18nify').Translate;
@@ -119,6 +121,7 @@ argument to `setLocale` and/or `setTranslations`.
 ## Helpers
 
 If for some reason, you cannot use the components, you can use the `I18n.t` and `I18n.l` helpers instead:
+
 ```javascript
 const I18n = require('react-i18nify').I18n;
 
@@ -155,9 +158,6 @@ I18n.setHandleMissingTranslation(myHandleMissingTranslation):
 
 I18n.t('application.unknown_translation'); // => returns 'Missing translation: application.unknown_translation'
 ```
-
-The library itself doesn't have this functionality so it's up to you to setup it. For example, you can use
-"parent tree lookup with common translations" strategy:
 
 [downloads-image]: http://img.shields.io/npm/dm/react-i18nify.svg
 
