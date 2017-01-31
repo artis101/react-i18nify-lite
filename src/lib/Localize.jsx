@@ -15,6 +15,7 @@ export default class Localize extends BaseComponent {
     options: React.PropTypes.object,
     dateFormat: React.PropTypes.string,
     dangerousHTML: React.PropTypes.bool,
+    className: React.PropTypes.string,
     /**
      * Optional styling
      */
@@ -27,12 +28,12 @@ export default class Localize extends BaseComponent {
   };
 
   render() {
-    const { value, dateFormat, options = {}, dangerousHTML, style } = this.props;
+    const { value, dateFormat, options = {}, dangerousHTML, style, className } = this.props;
     const localization = I18n._localize(value, { ...options, dateFormat });
 
     if (dangerousHTML) {
-      return <span style={style} dangerouslySetInnerHTML={{ __html: localization }} />;
+      return <span style={style} className={className} dangerouslySetInnerHTML={{ __html: localization }} />;
     }
-    return <span style={style}>{localization}</span>;
+    return <span style={style} className={className}>{localization}</span>;
   }
 }

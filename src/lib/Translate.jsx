@@ -9,6 +9,7 @@ export default class Translate extends BaseComponent {
   static propTypes = {
     value: React.PropTypes.string.isRequired,
     dangerousHTML: React.PropTypes.bool,
+    className: React.PropTypes.string,
     /**
      * Optional styling
      */
@@ -27,12 +28,12 @@ export default class Translate extends BaseComponent {
   }
 
   render() {
-    const { value, dangerousHTML, style } = this.props;
+    const { value, dangerousHTML, style, className } = this.props;
     const translation = I18n._translate(value, this.otherProps());
 
     if (dangerousHTML) {
-      return <span style={style} dangerouslySetInnerHTML={{ __html: translation }} />;
+      return <span style={style} className={className} dangerouslySetInnerHTML={{ __html: translation }} />;
     }
-    return <span style={style}>{translation}</span>;
+    return <span style={style} className={className}>{translation}</span>;
   }
 }

@@ -50,7 +50,7 @@ var Localize = function (_BaseComponent) {
           style = _props.style,
           className = _props.className;
 
-      var localization = _I18n2.default._localize(value, _extends({ dateFormat: dateFormat }, options));
+      var localization = _I18n2.default._localize(value, _extends({}, options, { dateFormat: dateFormat }));
 
       if (dangerousHTML) {
         return _react2.default.createElement('span', { style: style, className: className, dangerouslySetInnerHTML: { __html: localization } });
