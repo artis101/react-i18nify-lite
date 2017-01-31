@@ -112,8 +112,12 @@ export default {
 
   _localize(value, options = {}) {
     if (options.dateFormat) {
-      moment.locale(this._locale);
-      return moment(value).format(this.t(options.dateFormat));
+      return moment(
+        value,
+        options.parseFormat,
+        this._locale,
+        Boolean(options.strictParse)
+      ).format(this.t(options.dateFormat));
     }
     if (typeof value === 'number') {
       if (global.Intl) {

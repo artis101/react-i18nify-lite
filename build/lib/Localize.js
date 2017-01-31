@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -29,28 +33,35 @@ var Localize = function (_BaseComponent) {
   _inherits(Localize, _BaseComponent);
 
   function Localize() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, Localize);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    return _possibleConstructorReturn(this, (Localize.__proto__ || Object.getPrototypeOf(Localize)).apply(this, arguments));
+  }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Localize.__proto__ || Object.getPrototypeOf(Localize)).call.apply(_ref, [this].concat(args))), _this), _this.render = function () {
-      var localization = _I18n2.default._localize(_this.props.value, _this.props.dateFormat ? { dateFormat: _this.props.dateFormat } : _this.props.options);
-      if (_this.props.dangerousHTML) {
-        return _react2.default.createElement('span', { style: _this.props.style, dangerouslySetInnerHTML: { __html: localization } });
+  _createClass(Localize, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          value = _props.value,
+          dateFormat = _props.dateFormat,
+          _props$options = _props.options,
+          options = _props$options === undefined ? {} : _props$options,
+          dangerousHTML = _props.dangerousHTML,
+          style = _props.style,
+          className = _props.className;
+
+      var localization = _I18n2.default._localize(value, _extends({ dateFormat: dateFormat }, options));
+
+      if (dangerousHTML) {
+        return _react2.default.createElement('span', { style: style, className: className, dangerouslySetInnerHTML: { __html: localization } });
       }
       return _react2.default.createElement(
         'span',
-        { style: _this.props.style },
+        { style: style, className: className },
         localization
       );
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
+    }
+  }]);
 
   return Localize;
 }(_Base2.default);
@@ -60,6 +71,7 @@ Localize.propTypes = {
   options: _react2.default.PropTypes.object,
   dateFormat: _react2.default.PropTypes.string,
   dangerousHTML: _react2.default.PropTypes.bool,
+  className: _react2.default.PropTypes.string,
   /**
    * Optional styling
    */

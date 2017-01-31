@@ -21,21 +21,18 @@ export default class Localize extends BaseComponent {
     style: React.PropTypes.objectOf(
       React.PropTypes.oneOfType([
         React.PropTypes.number,
-        React.PropTypes.string,
+        React.PropTypes.string
       ])
     ),
   };
 
-  render = () => {
-    const localization = I18n._localize(
-      this.props.value,
-      this.props.dateFormat
-        ? { dateFormat: this.props.dateFormat }
-        : this.props.options
-    );
-    if (this.props.dangerousHTML) {
-      return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: localization }} />;
+  render() {
+    const { value, dateFormat, options = {}, dangerousHTML, style } = this.props;
+    const localization = I18n._localize(value, { ...options, dateFormat });
+
+    if (dangerousHTML) {
+      return <span style={style} dangerouslySetInnerHTML={{ __html: localization }} />;
     }
-    return <span style={this.props.style}>{localization}</span>;
+    return <span style={style}>{localization}</span>;
   }
 }

@@ -130,8 +130,7 @@ exports.default = {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (options.dateFormat) {
-      _moment2.default.locale(this._locale);
-      return (0, _moment2.default)(value).format(this.t(options.dateFormat));
+      return (0, _moment2.default)(value, options.parseFormat, this._locale, Boolean(options.strictParse)).format(this.t(options.dateFormat));
     }
     if (typeof value === 'number') {
       if (global.Intl) {

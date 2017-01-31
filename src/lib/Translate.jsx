@@ -15,22 +15,24 @@ export default class Translate extends BaseComponent {
     style: React.PropTypes.objectOf(
       React.PropTypes.oneOfType([
         React.PropTypes.number,
-        React.PropTypes.string,
+        React.PropTypes.string
       ])
     ),
   };
 
-  otherProps = () => {
+  otherProps() {
     const result = { ...this.props };
     delete result.value;
     return result;
   }
 
-  render = () => {
-    const translation = I18n._translate(this.props.value, this.otherProps());
-    if (this.props.dangerousHTML) {
-      return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: translation }} />;
+  render() {
+    const { value, dangerousHTML, style } = this.props;
+    const translation = I18n._translate(value, this.otherProps());
+
+    if (dangerousHTML) {
+      return <span style={style} dangerouslySetInnerHTML={{ __html: translation }} />;
     }
-    return <span style={this.props.style}>{translation}</span>;
+    return <span style={style}>{translation}</span>;
   }
 }
