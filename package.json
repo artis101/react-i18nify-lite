@@ -4,8 +4,14 @@
   "description": "Simple i18n translation and localization components and helpers for React applications.",
   "main": "./build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf build",
+    "build": "gulp build",
+    "prepublish": "npm run clean && npm run build"
   },
+  "files": [
+    "build"
+  ],
   "author": "Zoover",
   "repository": {
     "type": "git",
@@ -37,6 +43,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-dev-tasks": "^1.0.23",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "rimraf": "^2.5.4"
   }
 }
