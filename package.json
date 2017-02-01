@@ -13,16 +13,6 @@
     "build"
   ],
   "author": "JSxMachina",
-  "contributors": [
-    {
-      "name": "Gerben Meyer",
-      "url": "https://github.com/gerbenmeyer"
-    },
-    {
-      "name": "Mohamed Ben Mohamed",
-      "url": "https://github.com/tikider"
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/JSxMachina/react-i18nify.git"
@@ -55,5 +45,61 @@
     "gulp-dev-tasks": "^1.4.2",
     "react-dom": "^15.4.2",
     "rimraf": "^2.5.4"
-  }
+  },
+  "contributors": [
+    {
+      "name": null,
+      "email": null,
+      "url": "https://github.com/livnatge",
+      "contributions": 4,
+      "additions": 39,
+      "deletions": 22,
+      "hireable": null
+    },
+    {
+      "name": "Nico",
+      "email": null,
+      "url": "https://github.com/Freezystem",
+      "contributions": 3,
+      "additions": 95,
+      "deletions": 478,
+      "hireable": true
+    },
+    {
+      "name": "Gerben Meyer",
+      "email": null,
+      "url": "https://github.com/gerbenmeyer",
+      "contributions": 61,
+      "additions": 1283,
+      "deletions": 620,
+      "hireable": null
+    },
+    {
+      "name": "Michael Ferron",
+      "email": null,
+      "url": "https://github.com/iamferron",
+      "contributions": 1,
+      "additions": 20,
+      "deletions": 3,
+      "hireable": null
+    },
+    {
+      "name": "Mikael Roos",
+      "email": null,
+      "url": "https://github.com/livedo",
+      "contributions": 3,
+      "additions": 59,
+      "deletions": 32,
+      "hireable": null
+    },
+    {
+      "name": "Mohamed Ben Mohamed",
+      "email": "mbmbrk@gmail.com",
+      "url": "https://github.com/tikider",
+      "contributions": 8,
+      "additions": 296,
+      "deletions": 55,
+      "hireable": null
+    }
+  ]
 }
