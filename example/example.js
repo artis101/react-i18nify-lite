@@ -6,7 +6,7 @@ let ReactI18nfiy = null;
 try {
   ReactI18nfiy = require('react-i18nify'); //
 } catch (e) {
-  ReactI18nfiy = require('./build/index.js');
+  ReactI18nfiy = require('../build/index.js');
 }
 
 const { I18n, Translate, Localize } = ReactI18nfiy;
