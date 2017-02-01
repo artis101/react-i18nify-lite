@@ -1,7 +1,7 @@
 # react-i18nify
 Simple i18n translation and localization components and helpers for React applications.
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url]
+[![NPM version][version-image]][npm-url] [![Downloads][downloads-image]][npm-url]
 
 A working example of this package can be found [here at Tonic](https://tonicdev.com/npm/react-i18nify).
 
@@ -159,7 +159,7 @@ I18n.setHandleMissingTranslation(myHandleMissingTranslation):
 I18n.t('application.unknown_translation'); // => returns 'Missing translation: application.unknown_translation'
 ```
 
-[downloads-image]: http://img.shields.io/npm/dm/react-i18nify.svg
+[version-image]: https://img.shields.io/npm/v/react-i18nify.svg
+[downloads-image]: https://img.shields.io/npm/dm/react-i18nify.svg
 
 [npm-url]: https://npmjs.org/package/react-i18nify
-[npm-image]: http://img.shields.io/npm/v/react-i18nify.svg

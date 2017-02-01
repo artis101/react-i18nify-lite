@@ -16,7 +16,7 @@ export default class Translate extends BaseComponent {
       React.PropTypes.oneOfType([
         React.PropTypes.number,
         React.PropTypes.string,
-      ])
+      ]),
     ),
   };
 

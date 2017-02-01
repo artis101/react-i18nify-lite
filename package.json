@@ -12,10 +12,20 @@
   "files": [
     "build"
   ],
-  "author": "Zoover",
+  "author": "JSxMachina",
+  "contributors": [
+    {
+      "name": "Gerben Meyer",
+      "url": "https://github.com/gerbenmeyer"
+    },
+    {
+      "name": "Mohamed Ben Mohamed",
+      "url": "https://github.com/tikider"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/zoover/react-i18nify.git"
+    "url": "git://github.com/JSxMachina/react-i18nify.git"
   },
   "license": "ISC",
   "keywords": [
@@ -32,18 +42,18 @@
   "tonicExampleFilename": "example.js",
   "dependencies": {
     "intl": "^1.2",
-    "moment": "^2.13.0",
-    "react": "^15.1.0"
+    "moment": "^2.17.1",
+    "react": "^15.4.2"
   },
   "devDependencies": {
-    "babel-core": "^6.20.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-1": "^6.5.0",
+    "babel-core": "^6.22.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-1": "^6.22.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-dev-tasks": "^1.0.23",
-    "react-dom": "^15.4.1",
+    "gulp-dev-tasks": "^1.4.2",
+    "react-dom": "^15.4.2",
     "rimraf": "^2.5.4"
   }
 }

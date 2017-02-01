@@ -22,7 +22,7 @@ export default class Localize extends BaseComponent {
       React.PropTypes.oneOfType([
         React.PropTypes.number,
         React.PropTypes.string,
-      ])
+      ]),
     ),
   };
 
@@ -31,7 +31,7 @@ export default class Localize extends BaseComponent {
       this.props.value,
       this.props.dateFormat
         ? { dateFormat: this.props.dateFormat }
-        : this.props.options
+        : this.props.options,
     );
     if (this.props.dangerousHTML) {
       return <span style={this.props.style} dangerouslySetInnerHTML={{ __html: localization }} />;

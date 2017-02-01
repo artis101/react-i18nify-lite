@@ -82,12 +82,12 @@ export default {
   _replace(translation, replacements) {
     let replaced = translation;
     if (typeof translation === 'string') {
-      Object.keys(replacements).forEach(replacement => {
+      Object.keys(replacements).forEach((replacement) => {
         replaced = replaced.split(`%{${replacement}}`).join(replacements[replacement]);
       });
       return replaced;
     }
-    Object.keys(replaced).forEach(translationKey => {
+    Object.keys(replaced).forEach((translationKey) => {
       replaced[translationKey] = this._replace(replaced[translationKey], replacements);
     });
     return replaced;
@@ -102,7 +102,7 @@ export default {
       translation = this._fetchTranslation(
         this._translations,
         `${translationLocale}.${key}`,
-        replacements.count
+        replacements.count,
       );
     } catch (err) {
       return this._handleMissingTranslation(key, replacements);
@@ -138,7 +138,7 @@ export default {
       return this._fetchTranslation(
         translations[key.substring(0, _index)],
         key.substr(_index + 1),
-        count
+        count,
       );
     }
     if (count !== null) {
