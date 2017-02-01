@@ -7,7 +7,7 @@ A working example of this package can be found [here at Tonic](https://tonicdev.
 
 If you're using Redux or Fluxible, feel free to use [react-redux-i18n](https://github.com/zoover/react-redux-i18n) or [react-fluxible-i18n](https://github.com/zoover/react-fluxible-i18n) instead.
 
-# Table of contents
+## Table of contents
 
 * [Installation](#installation)
 * [Getting started](#getting-started)
@@ -15,7 +15,7 @@ If you're using Redux or Fluxible, feel free to use [react-redux-i18n](https://g
 * [Helpers](#helpers)
 * [API reference](#api-reference)
 
-# Installation
+## Installation
 
 Install by using npm:
 
@@ -23,7 +23,7 @@ Install by using npm:
 $ npm i --save react-i18nify
 ```
 
-# Getting started
+## Getting started
 
 Start by loading the translations and locale to be used:
 
@@ -64,7 +64,7 @@ I18n.setLocale('nl');
 
 Now you're all set up to start unleashing the power of `react-i18nify`!
 
-# Components
+## Components
 
 The easiest way to translate or localize in your React components is by using the `Translate` and `Localize` components:
 
@@ -95,7 +95,7 @@ const AwesomeComponent = () => (
 );
 ```
 
-# Helpers
+## Helpers
 
 If for some reason, you cannot use the components, you can use the `I18n.t` and `I18n.l` helpers instead.
 These helpers however will not be re-rendered automatically in any way, so if you use those, it's up to handle state change.
@@ -113,23 +113,23 @@ I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 20
 I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale 'nl'
 ```
 
-# API Reference
+## API Reference
 
-## `I18n`
+### `I18n`
 
 Main module for handling all configurations and translations, with the following functions:
 
-### `setLocale(locale, rerenderComponents = true)`
+#### `setLocale(locale, rerenderComponents = true)`
 
 The used locale can be set with this function. By default, changing the locale will re-render all components.
 This behavior can be prevented by providing `false` as a second argument.
 
-### `setTranslations(translations, rerenderComponents = true)`
+#### `setTranslations(translations, rerenderComponents = true)`
 
 The used translations can be set with this function. By default, changing the translations will re-render all components.
 This behavior can be prevented by providing `false` as a second argument.
 
-### `setLocaleGetter(fn)`
+#### `setLocaleGetter(fn)`
 
 Alternatively to using `setLocale`, you can provide a callback to return the locale with `setLocaleGetter`:
 
@@ -141,7 +141,7 @@ const locale = () => 'nl';
 I18n.setLocaleGetter(locale);
 ```
 
-### `setTranslationsGetter(fn)`
+#### `setTranslationsGetter(fn)`
 
 Alternatively to using `setTranslations`, you can provide a callback to return the translations with `setTranslationsGetter`:
 
@@ -156,7 +156,7 @@ const translation = () => ({
 I18n.setTranslationsGetter(translation):
 ```
 
-### `setHandleMissingTranslation(fn)`
+#### `setHandleMissingTranslation(fn)`
 
 By default, when a translation is missing, the translation key will be returned in a slightly formatted way,
 as can be seen in the `I18n.t('application.unknown_translation');` example above.
@@ -172,11 +172,11 @@ I18n.setHandleMissingTranslation(myHandleMissingTranslation):
 I18n.t('application.unknown_translation'); // => returns 'Missing translation: application.unknown_translation'
 ```
 
-### `t(key, replacements = {})`
+#### `t(key, replacements = {})`
 
 Helper function to translate a `key`, given an optional set of `replacements`. See the above Helpers section for examples.
 
-### `l(value, options)`
+#### `l(value, options)`
 
 Helper function to localize a `value`, given a set of `options`. See the above Helpers section for examples.
 
@@ -188,63 +188,63 @@ Moreover, a `strictParse` option can be provided. When set to `true`, `moment`'s
 For number formatting, the localize helper supports all options as provided by the Javascript built-in `Intl.NumberFormat` object.
 For the full list of options, see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat.
 
-### `forceComponentsUpdate()`
+#### `forceComponentsUpdate()`
 
 This function can be called to force a re-render of all I18n components.
 
-## `<Translate>`
+### `<Translate>`
 
 React translate component, with the following props:
 
-### `value` (string)
+#### `value` (string)
 
 The translation key to translate.
 
-### `dangerousHTML` (bool)
+#### `dangerousHTML` (bool)
 
 If `true`, HTML is allowed in the translation.
 
-### `className` (string)
+#### `className` (string)
 
 Optional CSS classname.
 
-### `style` (object)
+#### `style` (object)
 
 Optional inline styling
 
-### Other props
+#### Other props
 
 All other provided props will be used as replacements for the translation.
 
-## `<Localize>`
+### `<Localize>`
 
 React localize component, with the following props:
 
-### `value` (number/string/object)
+#### `value` (number/string/object)
 
 The number or date to localize.
 
-### `dateFormat` (string)
+#### `dateFormat` (string)
 
 The translation key for providing the format string. Only needed for localizing dates.
 For the full list of formatting tokens which can be used in the format string, see http://momentjs.com/docs/#/displaying/format/.
 
-### `options` (object)
+#### `options` (object)
 
 When localizing dates, a `strictParse` option can be provided. When set to `true`, `moment`'s strict parsing will be used.
 
 When localizing numbers, the localize component supports all options as provided by the Javascript built-in `Intl.NumberFormat` object.
 For the full list of options, see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat.
 
-### `dangerousHTML` (bool)
+#### `dangerousHTML` (bool)
 
 If `true`, HTML is allowed in the translation.
 
-### `className` (string)
+#### `className` (string)
 
 Optional CSS classname.
 
-### `style` (object)
+#### `style` (object)
 
 Optional inline styling
 
