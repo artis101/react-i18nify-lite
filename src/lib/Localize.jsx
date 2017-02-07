@@ -1,13 +1,8 @@
-/* eslint no-underscore-dangle: "off" */
-/* eslint react/no-danger: "off" */
-/* eslint react/forbid-prop-types: "off" */
-
 import React from 'react';
 import I18n from './I18n';
 import BaseComponent from './Base';
 
 export default class Localize extends BaseComponent {
-
   static propTypes = {
     value: React.PropTypes.oneOfType([
       React.PropTypes.string,
@@ -17,9 +12,6 @@ export default class Localize extends BaseComponent {
     dateFormat: React.PropTypes.string,
     dangerousHTML: React.PropTypes.bool,
     className: React.PropTypes.string,
-    /**
-     * Optional styling
-     */
     style: React.PropTypes.objectOf(
       React.PropTypes.oneOfType([
         React.PropTypes.number,

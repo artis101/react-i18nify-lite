@@ -1,5 +1,3 @@
-/* eslint no-underscore-dangle: "off" */
-
 import moment from 'moment';
 import 'moment/min/locales';
 import IntlPolyfill from 'intl';
