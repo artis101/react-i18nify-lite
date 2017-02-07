@@ -153,7 +153,7 @@ const translation = () => ({
   nl: { ... }
 });
 
-I18n.setTranslationsGetter(translation):
+I18n.setTranslationsGetter(translation);
 ```
 
 #### `setHandleMissingTranslation(fn)`
@@ -167,7 +167,7 @@ const I18n = require('react-i18nify').I18n;
 
 const myHandleMissingTranslation = (key, replacements) => `Missing translation: ${key}`;
 
-I18n.setHandleMissingTranslation(myHandleMissingTranslation):
+I18n.setHandleMissingTranslation(myHandleMissingTranslation);
 
 I18n.t('application.unknown_translation'); // => returns 'Missing translation: application.unknown_translation'
 ```

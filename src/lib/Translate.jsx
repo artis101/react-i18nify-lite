@@ -1,6 +1,3 @@
-/* eslint no-underscore-dangle: "off" */
-/* eslint react/no-danger: "off" */
-
 import React from 'react';
 import I18n from './I18n';
 import BaseComponent from './Base';
@@ -10,9 +7,6 @@ export default class Translate extends BaseComponent {
     value: React.PropTypes.string.isRequired,
     dangerousHTML: React.PropTypes.bool,
     className: React.PropTypes.string,
-    /**
-     * Optional styling
-     */
     style: React.PropTypes.objectOf(
       React.PropTypes.oneOfType([
         React.PropTypes.number,
