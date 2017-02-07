@@ -4,7 +4,8 @@
   "description": "Simple i18n translation and localization components and helpers for React applications.",
   "main": "./build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --colors --env=jsdom",
+    "test:watch": "npm test -- --watch",
     "lint": "esw --ext .js --ext .jsx src --color",
     "lint:watch": "npm run lint -- --watch",
     "lint:fix": "npm run lint -- --fix",
@@ -16,8 +17,12 @@
     "presets": [
       "react",
       "es2015",
-      "stage-0"
+      "stage-0",
+      "jest"
     ]
+  },
+  "jest": {
+    "verbose": true
   },
   "files": [
     "build"
@@ -48,13 +53,19 @@
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-eslint": "^7.1.1",
+    "babel-jest": "^18.0.0",
+    "babel-polyfill": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-0": "^6.22.0",
+    "enzyme": "^2.7.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-watch": "^2.1.14",
+    "jest": "^18.1.0",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-test-renderer": "^15.4.2",
     "rimraf": "^2.5.4"
   },
   "eslintConfig": {
