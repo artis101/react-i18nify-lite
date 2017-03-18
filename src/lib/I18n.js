@@ -1,5 +1,4 @@
 import moment from 'moment';
-import 'moment/min/locales';
 import IntlPolyfill from 'intl';
 import formatMissingTranslation from './formatMissingTranslation';
 import BaseComponent from './Base';
