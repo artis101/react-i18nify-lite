@@ -1,16 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import I18n from './I18n';
 import BaseComponent from './Base';
 
 export default class Translate extends BaseComponent {
   static propTypes = {
-    value: React.PropTypes.string.isRequired,
-    dangerousHTML: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    style: React.PropTypes.objectOf(
-      React.PropTypes.oneOfType([
-        React.PropTypes.number,
-        React.PropTypes.string,
+    value: PropTypes.string.isRequired,
+    dangerousHTML: PropTypes.bool,
+    className: PropTypes.string,
+    style: PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
       ]),
     ),
   };
