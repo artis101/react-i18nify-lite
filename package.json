@@ -46,10 +46,10 @@
   ],
   "runkitExampleFilename": "example/example.js",
   "dependencies": {
-    "intl": "1.2",
-    "moment": "2.18.1",
-    "prop-types": "15.5.8",
-    "react": "15.5.4"
+    "intl": "^1.2",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
