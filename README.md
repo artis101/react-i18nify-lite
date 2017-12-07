@@ -1,11 +1,11 @@
-# react-i18nify
-Simple i18n translation and localization components and helpers for React applications.
+# react-i18nify-lite
 
-[![NPM version][version-image]][npm-url] [![Downloads][downloads-image]][npm-url]
+Simple i18n translation components and helpers for React applications.
 
-A working example of this package can be found [here at RunKit](https://runkit.com/npm/react-i18nify).
+This fork was created to avoid pulling in `moment` library for applications
+that deal with date formatting and localization separately.
 
-If you're using Redux or Fluxible, feel free to use [react-redux-i18n](https://github.com/zoover/react-redux-i18n) or [react-fluxible-i18n](https://github.com/zoover/react-fluxible-i18n) instead.
+If you're using Redux or Fluxible, feel free to use [react-redux-i18n](https://github.com/artisavotins/react-redux-i18n-lite) or [react-fluxible-i18n](https://github.com/zoover/react-fluxible-i18n) instead.
 
 ## Table of contents
 
@@ -17,10 +17,16 @@ If you're using Redux or Fluxible, feel free to use [react-redux-i18n](https://g
 
 ## Installation
 
+Install by using yarn:
+
+```
+$ yarn add react-i18nify-lite
+```
+
 Install by using npm:
 
 ```
-$ npm i --save react-i18nify
+$ npm i --save react-i18nify-lite
 ```
 
 ## Getting started
@@ -28,7 +34,7 @@ $ npm i --save react-i18nify
 Start by loading setting translations and locale to be used:
 
 ```javascript
-const I18n = require('react-i18nify').I18n;
+import { I18n } from 'react-i18nify-lite';
 
 I18n.setTranslations({
   en: {
@@ -62,55 +68,43 @@ I18n.setTranslations({
 I18n.setLocale('nl');
 ```
 
-Now you're all set up to start unleashing the power of `react-i18nify`!
+And that is it!
 
 ## Components
 
-The easiest way to translate or localize in your React components is by using the `Translate` and `Localize` components:
+The easiest way to translate copies in your React components is by using the `Translate` component:
 
 ```javascript
-const React = require('react');
-const Translate = require('react-i18nify').Translate;
-const Localize = require('react-i18nify').Localize;
+import React from 'react';
+import { Translate } from 'react-i18nify-lite';
+
 
 const AwesomeComponent = () => (
   <div>
     <Translate value="application.title"/>
-      // => returns '<span>Toffe app met i18n!</span>' for locale 'nl'
+    // => returns '<span>Toffe app met i18n!</span>' for locale 'nl'
     <Translate value="application.title" style={{ fontWeight: 'bold', fontSize: '14px' }} />
     // => returns '<span style="font-weight:bold;font-size:14px;">Toffe app met i18n!</span>' for locale 'nl'
     <Translate value="application.hello" name="Aad"/>
-      // => returns '<span>Hallo, Aad!</span>' for locale 'nl'
-    <Localize value="2015-09-03" dateFormat="date.long"/>
-      // => returns '<span>3 september 2015</span> for locale 'nl'
-    <Localize value={10/3} options={{style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2}}/>
-      // => returns '<span>€ 3,33</span> for locale 'nl'
-    <Translate value="export" count={1} />
-      // => returns '<span>Exporteer 1 ding</span> for locale 'nl'
-    <Translate value="export" count={2} />
-      // => returns '<span>Exporteer 2 dingen</span> for locale 'nl'
-    <Translate value="two_lines" dangerousHTML />
-      // => returns '<span>Regel 1<br />Regel 2</span>'
+    // => returns '<span>Hallo, Aad!</span>' for locale 'nl'
   </div>
 );
 ```
 
 ## Helpers
 
-If for some reason, you cannot use the components, you can use the `I18n.t` and `I18n.l` helpers instead.
-These helpers however will not be re-rendered automatically in any way, so if you use those, it's up to handle state change.
+If for some reason, you cannot use a regular React component, you can use the `I18n.t` helper instead.
+These helpers are functions and therefore will not be re-rendered. You have to handle state updates
+yourself in places where `I18n.t` is used.
 
 ```javascript
-const I18n = require('react-i18nify').I18n;
+import { I18n } from 'react-i18nify-lite';
 
 I18n.t('application.title'); // => returns 'Toffe app met i18n!' for locale 'nl'
 I18n.t('application.hello', {name: 'Aad'}); // => returns 'Hallo, Aad!' for locale 'nl'
 I18n.t('export', {count: 0}); // => returns 'Niks te exporteren' for locale 'nl'
 I18n.t('application.unknown_translation'); // => returns 'Unknown Translation' as translation is missing
 I18n.t('application', {name: 'Aad'}); // => returns {hello: "Hallo, Aad!", title: "Toffe app met i18n!"} for locale 'nl'
-
-I18n.l(1385856000000, { dateFormat: 'date.long' }); // => returns '1 december 2013' for locale 'nl'
-I18n.l(Math.PI, { maximumFractionDigits: 2 }); // => returns '3,14' for locale 'nl'
 ```
 
 ## API Reference
@@ -134,7 +128,7 @@ This behavior can be prevented by providing `false` as a second argument.
 Alternatively to using `setLocale`, you can provide a callback to return the locale with `setLocaleGetter`:
 
 ```javascript
-const I18n = require('react-i18nify').I18n;
+import { I18n } from 'react-i18nify-lite';
 
 const locale = () => 'nl';
 
@@ -146,7 +140,7 @@ I18n.setLocaleGetter(locale);
 Alternatively to using `setTranslations`, you can provide a callback to return the translations with `setTranslationsGetter`:
 
 ```javascript
-const I18n = require('react-i18nify').I18n;
+import { I18n } from 'react-i18nify-lite';
 
 const translation = () => ({
   en: { ... },
@@ -163,7 +157,7 @@ as can be seen in the `I18n.t('application.unknown_translation');` example above
 You can however overwrite this behavior by setting a function to handle missing translations.
 
 ```javascript
-const I18n = require('react-i18nify').I18n;
+import { I18n } from 'react-i18nify-lite';
 
 const myHandleMissingTranslation = (key, replacements) => `Missing translation: ${key}`;
 
@@ -175,18 +169,6 @@ I18n.t('application.unknown_translation'); // => returns 'Missing translation: a
 #### `t(key, replacements = {})`
 
 Helper function to translate a `key`, given an optional set of `replacements`. See the above Helpers section for examples.
-
-#### `l(value, options)`
-
-Helper function to localize a `value`, given a set of `options`. See the above Helpers section for examples.
-
-For localizing dates, the `moment` library is used.
-A `dateFormat` option can be used for providing a translation key with the format string.
-For the full list of formatting tokens which can be used in the format string, see http://momentjs.com/docs/#/displaying/format/.
-Moreover, a `strictParse` option can be provided. When set to `true`, `moment`'s strict parsing will be used.
-
-For number formatting, the localize helper supports all options as provided by the Javascript built-in `Intl.NumberFormat` object.
-For the full list of options, see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat.
 
 #### `forceComponentsUpdate()`
 
@@ -214,41 +196,9 @@ Optional inline styling
 
 #### Other props
 
-All other provided props will be used as replacements for the translation.
+All other provided props will be used as replacements for the translation string.
 
-### `<Localize>`
+[version-image]: https://img.shields.io/npm/v/react-i18nify-lite.svg
+[downloads-image]: https://img.shields.io/npm/dm/react-i18nify-lite.svg
 
-React localize component, with the following props:
-
-#### `value` (number/string/object)
-
-The number or date to localize.
-
-#### `dateFormat` (string)
-
-The translation key for providing the format string. Only needed for localizing dates.
-For the full list of formatting tokens which can be used in the format string, see http://momentjs.com/docs/#/displaying/format/.
-
-#### `options` (object)
-
-When localizing dates, a `strictParse` option can be provided. When set to `true`, `moment`'s strict parsing will be used.
-
-When localizing numbers, the localize component supports all options as provided by the Javascript built-in `Intl.NumberFormat` object.
-For the full list of options, see https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat.
-
-#### `dangerousHTML` (bool)
-
-If `true`, HTML is allowed in the translation.
-
-#### `className` (string)
-
-Optional CSS classname.
-
-#### `style` (object)
-
-Optional inline styling
-
-[version-image]: https://img.shields.io/npm/v/react-i18nify.svg
-[downloads-image]: https://img.shields.io/npm/dm/react-i18nify.svg
-
-[npm-url]: https://npmjs.org/package/react-i18nify
+[npm-url]: https://npmjs.org/package/react-i18nify-lite
