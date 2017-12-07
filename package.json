@@ -1,7 +1,7 @@
 {
-  "name": "react-i18nify",
-  "version": "1.8.8",
-  "description": "Simple i18n translation and localization components and helpers for React applications.",
+  "name": "react-i18nify-lite",
+  "version": "1.0.0",
+  "description": "Simple i18n translation components and helpers for React applications.",
   "main": "./build/index.js",
   "scripts": {
     "test": "jest --colors --env=jsdom",
@@ -30,24 +30,20 @@
   "author": "JSxMachina",
   "repository": {
     "type": "git",
-    "url": "git://github.com/JSxMachina/react-i18nify.git"
+    "url": "git://github.com/artisavotins/react-i18nify-lite.git"
   },
   "license": "ISC",
   "keywords": [
     "react",
     "i18n",
     "translation",
-    "localization",
     "components",
     "helpers",
     "flux",
-    "fluxible",
     "redux"
   ],
   "runkitExampleFilename": "example/example.js",
   "dependencies": {
-    "intl": "^1.2",
-    "moment": "^2.18.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4"
   },
@@ -87,8 +83,6 @@
       "es6": true
     },
     "globals": {
-      "moment": false,
-      "intl": false,
       "global": false
     },
     "plugins": [
