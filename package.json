@@ -97,7 +97,16 @@
   },
   "contributors": [
     {
-      "name": null,
+      "name": "Mohamed Ben Mohamed",
+      "email": null,
+      "url": "https://github.com/tikider",
+      "contributions": 8,
+      "additions": 296,
+      "deletions": 55,
+      "hireable": null
+    },
+    {
+      "name": "Livnat Gershoni",
       "email": null,
       "url": "https://github.com/livnatge",
       "contributions": 4,
@@ -106,22 +115,22 @@
       "hireable": null
     },
     {
-      "name": "Nico",
-      "email": null,
-      "url": "https://github.com/Freezystem",
-      "contributions": 3,
-      "additions": 95,
-      "deletions": 478,
-      "hireable": true
-    },
-    {
       "name": "Gerben Meyer",
       "email": null,
       "url": "https://github.com/gerbenmeyer",
-      "contributions": 61,
-      "additions": 1283,
-      "deletions": 620,
+      "contributions": 82,
+      "additions": 1711,
+      "deletions": 1246,
       "hireable": null
+    },
+    {
+      "name": "Robert Haritonov",
+      "email": null,
+      "url": "https://github.com/operatino",
+      "contributions": 1,
+      "additions": 0,
+      "deletions": 1,
+      "hireable": true
     },
     {
       "name": "Michael Ferron",
@@ -133,6 +142,15 @@
       "hireable": null
     },
     {
+      "name": "Artis Avotins",
+      "email": null,
+      "url": "https://github.com/artisavotins",
+      "contributions": 5,
+      "additions": 39,
+      "deletions": 246,
+      "hireable": true
+    },
+    {
       "name": "Mikael Roos",
       "email": null,
       "url": "https://github.com/livedo",
@@ -142,12 +160,21 @@
       "hireable": null
     },
     {
-      "name": "Mohamed Ben Mohamed",
-      "email": "mbmbrk@gmail.com",
-      "url": "https://github.com/tikider",
-      "contributions": 8,
-      "additions": 296,
-      "deletions": 55,
+      "name": "Nico",
+      "email": null,
+      "url": "https://github.com/Freezystem",
+      "contributions": 5,
+      "additions": 342,
+      "deletions": 527,
+      "hireable": null
+    },
+    {
+      "name": "Vincent Fretin",
+      "email": null,
+      "url": "https://github.com/vincentfretin",
+      "contributions": 1,
+      "additions": 4,
+      "deletions": 4,
       "hireable": null
     }
   ]
